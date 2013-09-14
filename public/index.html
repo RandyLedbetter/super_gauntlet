@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Super Gauntlet</title>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style/bootstrap/css/sticky-footer-navbar.css">
+    <link rel="stylesheet" href="style/super_gauntlet.css">
+</head>
+
+<body>
+
+<!-- Wrap all page content here -->
+<div id="wrap">
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Super Gauntlet</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li  class="active"><a href="#gameView">Game</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">How to Play</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+
+    <!-- Begin page content -->
+
+        <div id="content"></div>
+
+    <!-- End page content -->
+
+</div>
+<div id="footer">
+    <div class="container">
+        <p class="text-muted credit">Super Gauntlet</p>
+    </div>
+</div>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.1/underscore-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+<script src="style/bootstrap/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/holder/2.0/holder.js"></script>
+
+
+<script src="js/templateLoader.js" ></script>
+<script src="js/views/splash.js" async="async"></script>
+<script src="js/views/fighterOptions.js"></script>
+<script src="js/views/rangerOptions.js"></script>
+<script src="js/views/mageOptions.js"></script>
+<script src="js/views/clericOptions.js"></script>
+<script src="js/views/gameView.js"></script>
+<script src="js/client.js"></script>
+
+
+<script src="http://localhost:8000/socket.io/socket.io.js"></script>
+<script>var socket = io.connect('http://localhost:8000');</script>
+<script src="js/requestAnimationFrame.js"></script>
+<script src="js/models/Keys.js"></script>
+<script src="js/models/Player.js"></script>
+<script src="js/super_gauntlet.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
