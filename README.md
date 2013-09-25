@@ -7,9 +7,8 @@ This is a Node.js / Socket.IO real-time multi-player game. Both server- and clie
 Ryan Beal, John Challinger, Randy Ledbetter, Andrew Reed, Ethan Ward, and Justin Wessel.
 
 ##Current State of the Project
-When a client connects to the server, the user is presented with a Splash screen. There is a character customization page for each of the four base character classes available to users. Once customization is complete, the game begins. In its current state, the user is asked to select a number from 0 to 3 (four numbers, each representing one of the four character classes in the Super Gauntlet game).
-
-Once the character class id is selected, a client side Player object is instantiated and news of this event is sent to the server via socket.io. The server instantiates a server side Player object with the same properties as contained within the transmitted client Player object and stored in a players[] array.
+When a client connects to the server, the user is presented with a Splash screen. There is a character customization page for each of the four base character classes available to users. Once customization is complete, the game begins. 
+Once the character class is selected and the associated form is filled out, a client side Player object is instantiated and news of this event is sent to the server via socket.io. The server instantiates a server side Player object with the same properties as contained within the transmitted client Player object and stored in a players[] array.
 
 The server then broadcasts the news of the newly-connected player to all other connected clients(if any).
 The client side code then draws the localPlayer via HTML5 Canvas. The user can then move the drawn square (representing the player) in the browser by pressing the arrow keys.
