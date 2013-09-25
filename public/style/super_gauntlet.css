@@ -9,7 +9,6 @@ Description:  CSS styles for Super Gauntlet Game
 */
 
 body {
-	overflow: hidden;
 }
 
 img {
@@ -18,20 +17,60 @@ img {
 }
 
 canvas {
-	display: block;
 }
 
 #gameCanvasContainer {
-    border: 1px solid #000000;
-    background-color: #444444;
+
+
 }
 
 #gameCanvas {
+    border: 1px solid #000000;
+    background-color: #444444;
     width: 100%;
-    height: 100%;
+    height: auto;
+
+
 }
 
 .spacer {
-    margin-top: 80px; /* define margin as you see fit */
+    padding-top: 80px; /* define margin as you see fit */
+
 }
+
+.sg-control-label {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 7px;
+}
+.sg-help-block {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: #737373;
+}
+
+.wrapper {
+    display: table;
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    /* Negative indent footer by its height */
+    margin: 0 auto -60px;
+    /* Pad bottom by footer height */
+    padding: 0 0 60px;
+}
+
+.inner-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.canvas-container {
+    position: relative;
+    max-width: 1024px;
+    min-width: 320px;
+    margin: 0 auto -60px;
+}
+
 

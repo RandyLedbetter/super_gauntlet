@@ -1,20 +1,29 @@
-<div class="container">
-<div id="gameCanvasContainer">
+
+<!--<div id="gameCanvasContainer">
     <canvas id="gameCanvas"></canvas>
-</div>
-<audio autoplay="autoplay" loop="loop">
-    <source src="../audio/heavy_metal_loop1_advanced64.MP3">
-    <source src="../audio/heavy_metal_loop1_advanced64.OGG">
-</audio>
+    <audio autoplay="autoplay" loop="loop">
+        <source src="../audio/heavy_metal_loop1_advanced64.MP3">
+        <source src="../audio/heavy_metal_loop1_advanced64.OGG">
+    </audio>
+</div>-->
+
+
+<div class="wrapper">
+    <div class="inner-wrapper">
+        <div class="canvas-container">
+            <canvas id="gameCanvas" width="1024" height="640"></canvas>
+        </div>
+    </div>
+    <audio autoplay="autoplay" loop="loop">
+        <source src="../audio/heavy_metal_loop1_advanced64.MP3">
+        <source src="../audio/heavy_metal_loop1_advanced64.OGG">
+    </audio>
 </div>
 
 
-<script src="http://localhost:8000/socket.io/socket.io.js"></script>
-<script>var socket = io.connect('http://localhost:8000');</script>
-<script src="js/requestAnimationFrame.js"></script>
-<script src="js/models/Keys.js"></script>
-<script src="js/models/Player.js"></script>
-<script src="js/super_gauntlet.js"></script>
+
+
+
 <script>
     init();
     animate();

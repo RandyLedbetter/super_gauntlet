@@ -10,3 +10,4 @@ window.FighterOptionsView = Backbone.View.extend({
     }
 
 });
+

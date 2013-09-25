@@ -10,10 +10,11 @@
  */
 
 
-var Player = function(startX, startY, playerClass) {
+var Player = function(startX, startY, playerClass, playerName) {
     var x = startX,
         y = startY,
-        pClass = playerClass,     //0, 1, 2, or 3.
+        role = playerClass,     //0, 1, 2, or 3.
+        username = playerName,
         id;
 
     // Declare and define getter and setter functions.
@@ -25,8 +26,8 @@ var Player = function(startX, startY, playerClass) {
         return y;
     };
 
-    var get_pClass = function() {
-        return pClass;
+    var get_role = function() {
+        return role;
     };
 
 
@@ -38,18 +39,25 @@ var Player = function(startX, startY, playerClass) {
         y = newY;
     };
 
-    var set_pClass = function(playerClass) {
-        pClass = playerClass;
+    var set_role = function(playerClass) {
+        role = playerClass;
     };
+    var get_username = function() {
+        return username;
+    }
+
 
     // Define which variables and methods can be accessed
     return {
         getX: getX,
         getY: getY,
-        get_pClass: get_pClass,
+        get_role: get_role,
         setX: setX,
         setY: setY,
-        set_pClass: set_pClass,
+        set_role: set_role,
+        username: username,
+        role: role,
+        get_username: get_username,
         id: id
     };
 };

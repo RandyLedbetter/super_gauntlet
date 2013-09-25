@@ -26,10 +26,6 @@ function init() {
 	canvas = document.getElementById("gameCanvas");
 	context = canvas.getContext("2d");
 
-	// Maximize the canvas
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
-
 	// Initialize keyboard movement controls
 	keys = new Keys();
 
@@ -39,13 +35,7 @@ function init() {
 	var startX = Math.round(Math.random()*(canvas.width-15)),
 		startY = Math.round(Math.random()*(canvas.height-15));
 
-	// Quick and dirty way to allow a newly-connected user to select one of our
-	// 4 archetypal character classes. The user's class choice is stored
-	// as pClass within the instantiated Player object called localPlayer.
-	// This is for testing only.
-	var playerClass = window.prompt("Pick a Class: Fighter = 0, Ranger = 1, Wizard = 2, Cleric = 3", "3");
-	// Initialise the local player
-	localPlayer = new Player(startX, startY, parseInt(playerClass));
+    window.localPlayer.set({x: startX, y: startY});
 
 
     // Initialize the socket connection. Server is running locally on port 8080.
@@ -65,9 +55,6 @@ var setEventHandlers = function() {
 	// Keyboard
 	window.addEventListener("keydown", onKeydown, false);
 	window.addEventListener("keyup", onKeyup, false);
-
-	// Window resize
-	window.addEventListener("resize", onResize, false);
 
 	// If socket connection successful, call onSocketConnected()
 	socket.on("connect", onSocketConnected);
@@ -99,19 +86,15 @@ function onKeyup(e) {
 	}
 }
 
-// Browser window resize
-function onResize(e) {
-	// Maximise the canvas
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
-}
 
 // Socket connected event handler
-function onSocketConnected() {
+function onSocketConnected(data) {
 	console.log("Connected to socket server");
 
 	// Send local player data to the game server
-	socket.emit("new player", {x: localPlayer.getX(), y: localPlayer.getY(), pClass: localPlayer.get_pClass()});
+	//socket.emit("new player", {x: localPlayer.get("x"), y: localPlayer.get("y"), role: localPlayer.get("role"), username: localPlayer.get("username")});
+    socket.emit("new player", localPlayer);
+
 }
 
 // Socket disconnected event handler
@@ -122,17 +105,23 @@ function onSocketDisconnect() {
 // New player event handler. The parameter 'data' represents the new Player
 // object broadcast from the server.
 function onNewPlayer(data) {
-	console.log("New player connected: "+ data.id);
+        console.log("New player connected: "+ data.id);
 
-	// Instantiate a local version of the Player object broadcast from the server.
-	var newPlayer = new Player(data.x, data.y, data.pClass);
-	newPlayer.id = data.id;
+        // Instantiate a local version of the Player object broadcast from the server.
+        var newPlayer = new Player();
 
-	// Add new player to the remote players array
-	remotePlayers.push(newPlayer);
+        newPlayer.set({x: data.x, y: data.y, role: data.role, id: data.id, username: data.username});
+
+        console.log(newPlayer.toJSON());
+
+        // Add new player to the remote players array
+        remotePlayers.push(newPlayer);
+
+
+
 }
 
-// Move player event handler. The paramter 'data' represents the remote player
+// Move player event handler. The parameter 'data' represents the remote player
 // that triggered the 'move player' event.
 function onMovePlayer(data) {
 	var movePlayer = playerById(data.id);
@@ -144,8 +133,8 @@ function onMovePlayer(data) {
 	}
 
 	// Update player position
-	movePlayer.setX(data.x);
-	movePlayer.setY(data.y);
+	movePlayer.set({x: data.x});
+	movePlayer.set({y: data.y});
 }
 
 // Remove player event handler. The paramter 'data' represents the remote 
@@ -155,7 +144,7 @@ function onRemovePlayer(data) {
 
 	// Player not found
 	if (!removePlayer) {
-		console.log("Player not found: "+data.id);
+		console.log("Player not found: "+ data.id);
 		return;
 	}
 
@@ -179,7 +168,7 @@ function update() {
 	// Update local player and check for change
 	if (localPlayer.update(keys)) {
 		// Send local player data to the game server for processing
-		socket.emit("move player", {x: localPlayer.getX(), y: localPlayer.getY()});
+		socket.emit("move player", {x: localPlayer.get("x"), y: localPlayer.get("y")});
 	}
 }
 
@@ -210,7 +199,7 @@ function draw() {
 function playerById(id) {
 	var i;
 	for (i = 0; i < remotePlayers.length; i++) {
-		if (remotePlayers[i].id == id)
+		if (remotePlayers[i].get("id") == id)
 			return remotePlayers[i];
 	}
 	

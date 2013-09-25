@@ -5,11 +5,17 @@
 <head>
     <title>Super Gauntlet</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1">
 
     <link rel="stylesheet" href="style/reset.css">
     <link rel="stylesheet" href="style/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="style/bootstrap/css/sticky-footer-navbar.css">
     <link rel="stylesheet" href="style/super_gauntlet.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.js"></script>
+
+
+
 </head>
 
 <body>
@@ -26,11 +32,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Super Gauntlet</a>
+                <a class="navbar-brand" href="index.html">Super
+                    Gauntlet</a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li  class="active"><a href="#gameView">Game</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">How to Play</a></li>
                 </ul>
@@ -53,11 +59,19 @@
 
 
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.1/underscore-min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
 <script src="style/bootstrap/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/holder/2.0/holder.js"></script>
+
+
+<script src="http://localhost:8000/socket.io/socket.io.js"></script>
+<script>var socket = io.connect('http://localhost:8000');</script>
+<script src="js/requestAnimationFrame.js"></script>
+<script src="js/models/Keys.js"></script>
+<script src="js/models/Player.js"></script>
+<script src="js/super_gauntlet.js"></script>
 
 
 <script src="js/templateLoader.js" ></script>
@@ -70,12 +84,7 @@
 <script src="js/client.js"></script>
 
 
-<script src="http://localhost:8000/socket.io/socket.io.js"></script>
-<script>var socket = io.connect('http://localhost:8000');</script>
-<script src="js/requestAnimationFrame.js"></script>
-<script src="js/models/Keys.js"></script>
-<script src="js/models/Player.js"></script>
-<script src="js/super_gauntlet.js"></script>
+
 
 
 

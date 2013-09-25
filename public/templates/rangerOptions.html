@@ -40,6 +40,7 @@
         </table>
         <br />
         <h4>Skill Options Options</h4>
+
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing
             elit. Donec quis purus quis neque viverra
             vestibulum. Maecenas non auctor ipsum. Nulla eget
@@ -58,117 +59,190 @@
     <div class="starter-template col-md-6">
         <h1>Customize <small>Ranger</small></h1>
         <hr />
-
-        <form class="form-horizontal" role="form">
+        <form class="form-horizontal" id="customization-form" method="get" action="">
             <div class="form-group">
-                <label for="userName"
-                       class="col-lg-2 control-label">Username</label>
+                <label for="userName" class="col-lg-2 sg-control-label">Username</label>
                 <div class="col-lg-10">
-                    <input type="text" class="form-control"
-                           id="userName"
-                           placeholder='Username (example: "Krull")'>
+                    <input type="text" class="form-control" id="userName" placeholder='Username (example: "Granith")'>
+                </div>
+            </div>
+            <div class="username-error"><strong class="text-danger"></strong></div>
+            <hr />
+            <div class="form-group">
+                <h4>Abilities <small>Choose Wisely</small></h4>
+                <p class="help-block">Increase your core abilities as you see fit.
+                    You have 6 points to divide among your Strength, Dexterity,
+                    and Constitution. These additional points will
+                    be added to your class' base ability scores.
+                </p>
+            </div>
+            <strong>Strength</strong>
+            <div class="form-group">
+                <label for="str" class="col-lg-offset-1 col-lg-3 sg-help-block">Base 12 +</label>
+                <div class="col-lg-2">
+                    <input  class="form-control number-required" id="str" type="text">
+                </div>
+            </div>
+            <strong>Dexterity</strong>
+            <div class="form-group">
+                <label for="dex" class="col-lg-offset-1 col-lg-3 sg-help-block">Base 14 +</label>
+                <div class="col-lg-2">
+                    <input type="text" class="form-control number-required" id="dex" type="text">
+                </div>
+            </div>
+            <strong>Constitution</strong>
+            <div class="form-group">
+                <label for="con" class="col-lg-offset-1 col-lg-3 sg-help-block">Base 12 +</label>
+                <div class="col-lg-2">
+                    <input type="text" class="form-control number-required" id="con" type="text">
+                </div>
+            </div>
+            <div class="abilities-error"><strong class="text-danger"></strong></div>
+            <hr />
+            <div class="row">
+                <h4>Items <small>Choose Wisely</small></h4>
+                <div class="col-lg-6">
+                    <form class="col-lg-6">
+                        <h5><strong>Weapon</strong></h5>
+                        <div class="radio">
+                            <label class="help-block">
+                                <input type="radio" name="optionsRadios" id="weapon1" value="option1" checked>Weapon One
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label class="help-block">
+                                <input type="radio" name="optionsRadios" id="weapon2" value="option2">Weapon Two
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-6">
+                    <form>
+                        <h5><strong>Magic Item</strong></h5>
+                        <div class="radio">
+                            <label class="help-block">
+                                <input type="radio" name="optionsRadios" id="magicItem1" value="option1" checked>Magic Item One
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label class="help-block">
+                                <input type="radio" name="optionsRadios" id="magicItem2" value="option2">Magic Item Two
+                            </label>
+                        </div>
+                    </form>
                 </div>
             </div>
             <hr />
-            <div class="form-group">
-                <label for="attribute1"
-                       class="col-lg-2 control-label">Ability</label>
-                <div class="col-lg-2">
-                    <input type="text"
-                           class="form-control" id="attribute1"
-                           placeholder="&plusmn;&nbsp; 2">
-                </div>
+            <div class="form-group pull-right spacer">
+                <p>
+                    <button id="submit" class="btn btn-primary btn-lg">Submit</button>
+                    <a href="#gameView"  id="joinGame" class="btn btn-default btn-lg disabled">Join Game</a>
+                </p>
             </div>
-            <div class="form-group">
-                <label for="attribute2"
-                       class="col-lg-2 control-label">Ability</label>
-                <div class="col-lg-2">
-                    <input type="text"
-                           class="form-control" id="attribute2"
-                           placeholder="&plusmn;&nbsp; 2">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="attribute3"
-                       class="col-lg-2 control-label">Ability</label>
-                <div class="col-lg-2">
-                    <input type="text"
-                           class="form-control" id="attribute3"
-                           placeholder="&plusmn;&nbsp; 2">
-                </div>
-            </div>
-
-            <hr />
-            <h4>Skills <small>Choose Wisely</small></h4>
-            <h5><strong>Subsection</strong></h5>
-            <div class="checkbox col-lg-offset-2 col-lg-10">
-                <label>
-                    <input type="checkbox" value="">
-                    Option One
-                </label>
-            </div>
-            <div class="checkbox col-lg-offset-2 col-lg-10">
-                <label>
-                    <input type="checkbox" value="">
-                    Option Two
-                </label>
-            </div>
-            <br />
-            <h5><strong>Subsection</strong></h5>
-            <div class="radio col-lg-offset-2 col-lg-10">
-                <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                    Option One
-                </label>
-            </div>
-            <div class="radio col-lg-offset-2 col-lg-10">
-                <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                    Option Two
-                </label>
-            </div>
-            <div class="radio col-lg-offset-2 col-lg-10">
-                <label>
-                    <input type="radio" name="optionsRadios"
-                           id="optionsRadios3" value="option3">
-                    Option Three
-                </label>
-            </div>
-            <br />
-            <h5><strong>Subsection</strong></h5>
-            <div class="radio col-lg-offset-2 col-lg-10">
-                <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                    Option One
-                </label>
-            </div>
-            <div class="radio col-lg-offset-2 col-lg-10">
-                <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                    Option Two
-                </label>
-            </div>
-            <div class="radio col-lg-offset-2 col-lg-10">
-                <label>
-                    <input type="radio" name="optionsRadios"
-                           id="optionsRadios3" value="option3">
-                    Option Three
-                </label>
-            </div>
-
-
-
-
-            <div class="col-lg-offset-10 col-lg-2">
-                <button type="submit"
-                        class="spacer btn btn-default">Join
-                    Game</button>
-            </div>
-
-
         </form>
-
-
 
     </div>
 </div>
+
+<script>
+
+    function initializeRanger(){
+        var name = $("#userName").val(),
+                str = parseInt($("#str").val()),
+                con = parseInt($("#con").val()),
+                dex = parseInt($("#dex").val());
+
+        window.localPlayer = new Player();
+        localPlayer.set({username: name});
+        localPlayer.set({role: 1});
+        localPlayer.set({str: 12 + str});
+        localPlayer.set({con: 14 + con});
+        localPlayer.set({dex: 12 + dex});
+        localPlayer.set({speed: localPlayer.get("speed") + ((14 + dex)/2)});
+        localPlayer.set({ac: localPlayer.get("ac") + ((14 + dex)/2)});
+        localPlayer.set({hp: localPlayer.get("hp") + (localPlayer.get("level") * (((12 + con)/2) + 10))});
+        console.log($('#weapon1').is(':checked'));
+        if ($('#weapon1').is(':checked')){
+            localPlayer.set({weapon: "weapon1"});
+        } else {
+            localPlayer.set({weapon: "weapon2"});
+        }
+        console.log($('#magicItem1').is(':checked'));
+        if ($('#magicItem1').is(':checked')){
+            localPlayer.set({items: "magicItem1"});
+        } else {
+            localPlayer.set({items: "magicItem2"});
+        }
+
+        console.log(localPlayer.toJSON());
+    }
+
+    $(document).ready(function(){
+
+        var notValid = true;
+
+        $("#userName").blur(function(){
+            if(this.value == ''){
+                $(this).closest('.form-group').removeClass('has-success').addClass('has-error');
+                $(".username-error").addClass('show').removeClass('hide');
+            } else {
+                $(this).closest('.form-group').removeClass('has-error').addClass('has-success');
+                $(".username-error").addClass('hide').removeClass('show');
+            }
+        });
+
+        $(".number-required").blur(function(){
+            var regExp = /^(\d|,)+$/;
+            var total = parseInt($("#str").val()) + parseInt($("#dex").val()) + parseInt($("#con").val());
+
+            if(!(regExp.test(parseInt($(this).val())))){
+                $(this).closest('.form-group').removeClass('has-success').addClass('has-error');
+                $("#customization-form div.abilities-error strong.text-danger").html("You may only enter numbers for your ability scores.");
+            } else {
+                $(this).closest('.form-group').removeClass('has-error').addClass('has-success');
+                $("#customization-form div.abilities-error strong.text-danger").html("");
+            }
+        });
+
+        $("#submit").click(function(){
+            console.log('clicked next button.');
+
+            var total = parseInt($("#str").val()) + parseInt($("#dex").val()) + parseInt($("#con").val());
+            console.log("total = " + total);
+
+            if(total != 6){
+                $(".number-required").closest('.form-group').removeClass('has-success').addClass('has-error');
+                $("#customization-form div.abilities-error strong.text-danger").html("Your ability score fields must sum to 6.");
+            } else {
+                $(".number-required").closest('.form-group').removeClass('has-error').addClass('has-success');
+                $("#customization-form div.abilities-error strong.text-danger").html("");
+            }
+
+            if($("#userName").val() == ''){
+                $("#userName").closest('.form-group').removeClass('has-success').addClass('has-error');
+                $("#userName").closest('label.control-label').removeClass('has-error');
+                $("#customization-form div.username-error strong.text-danger").html("You must enter a username.");
+            }
+
+            if(total == 6 && $("#userName").val() != ''){
+                notValid = false;
+                $('#joinGame').removeClass('disabled');
+            }
+
+        });
+
+        $('#joinGame').click(function(e) {
+            if(notValid){
+                e.preventDefault();
+            } else {
+                initializeRanger();
+            }
+        });
+
+    });
+
+</script>
+
+
+
+

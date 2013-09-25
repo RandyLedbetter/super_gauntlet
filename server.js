@@ -13,7 +13,7 @@
  ================================================================================
  HTTP server script
  ================================================================================
-*/
+ */
 
 
 
@@ -160,6 +160,7 @@ var setEventHandlers = function() {
 function onSocketConnection(client) {
     util.log("New player has connected: "+ client.id);
 
+
     // Listen for client disconnected event. Then call onClientDisconnect.
     client.on("disconnect", onClientDisconnect);
 
@@ -194,14 +195,14 @@ function onClientDisconnect() {
 // onNewPlayer instantiates a server side copy of the 'data' object.
 function onNewPlayer(data) {
     // Create a new player based on 'data'
-    var newPlayer = new Player(data.x, data.y, data.pClass);
+    var newPlayer = new Player(data.x, data.y, data.role, data.username);
     newPlayer.id = this.id;
 
 
 
     // Broadcast new player to all connected socket clients except
     // the client that just sent the 'new player' message.
-    this.broadcast.emit("new player", {id: newPlayer.id, x: newPlayer.getX(), y: newPlayer.getY(), pClass: newPlayer.get_pClass()});
+    this.broadcast.emit("new player", newPlayer);
 
 
     // Send existing players to the to the client that sent the 'new player'
@@ -209,7 +210,7 @@ function onNewPlayer(data) {
     var i, existingPlayer;
     for (i = 0; i < players.length; i++) {
         existingPlayer = players[i];
-        this.emit("new player", {id: existingPlayer.id, x: existingPlayer.getX(), y: existingPlayer.getY(), pClass: existingPlayer.get_pClass()});
+        this.emit("new player", {id: existingPlayer.id, x: existingPlayer.getX(), y: existingPlayer.getY(), role: existingPlayer.get_role(), username: existingPlayer.username});
     }
 
     // Add new player to the players array

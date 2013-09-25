@@ -15,7 +15,7 @@ var AppRouter = Backbone.Router.extend({
 
 
     fighterOptions: function () {
-    $('#content').html(new FighterOptionsView().render().el);
+    $('#content').html(new FighterOptionsView({model: Player}).render().el);
     },
 
 
@@ -35,7 +35,7 @@ var AppRouter = Backbone.Router.extend({
 
 
     gameView: function () {
-        $('#content').html(new GameView().render().el);
+        $('#content').html(new GameView({model: Player}).render().el);
     }
 
 });
