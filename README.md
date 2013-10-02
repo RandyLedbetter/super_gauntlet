@@ -21,11 +21,10 @@ Every time a new client (new browser window) connects to the server, this proces
 1. Download repository folder. In console, switch to the directory
 2. Install Node.js http://nodejs.org 
 3. Install Node Package Manager
-4. Install Socket.IO (type: npm install socket.io)
-5. Install Connect (type: npm install connect)
-6. Type:       node server.js
-7. Open public/index.html in a browser. Select a number from 0 to 3 (representing a character class). Move the character with the arrow keys.
-8. Open a seperate browser window and repeat the process with a different number to instantiate a different character class. Move the character around in the second window. Switch back and forth, and you will see the players' movements are in sync.
+4. Type:  "npm install -d" (without the quotes)
+5. Type:       node server.js
+6. Open public/index.html in a browser. Select a number from 0 to 3 (representing a character class). Move the character with the arrow keys.
+7. Open a seperate browser window and repeat the process with a different number to instantiate a different character class. Move the character around in the second window. Switch back and forth, and you will see the players' movements are in sync.
 
 
 ##The Character Class Colors Are:
