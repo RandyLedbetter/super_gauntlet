@@ -71,6 +71,7 @@ var Player = Backbone.Model.extend({
             console.log("y = " + this.get("y") + ".");
         });
 
+        var imageObj = new Image();
 
         // Add any functions you want to call when a Player object is
         // first instantiated...
@@ -101,8 +102,8 @@ var Player = Backbone.Model.extend({
     },
 
     // Draw player
-    draw: function(context) {
-
+    draw: function(context) 
+    {
 
         // Cheesy way to test client/server retention of multiplayer
         // object attributes. Remove once proof of concept is established.
@@ -110,25 +111,37 @@ var Player = Backbone.Model.extend({
         // prompted upon client connection to select a number between 0 - 3.
         // This number is assigned to the Player object property 'pClass'
         // A different color is used to represent each class visually.
+        var imageObj = new Image();
+
         switch(this.get("role"))
         {
 
             case 0:
-                context.fillStyle = "#FF0000";
+                imageObj.src = 'js/models/fighter.png';
                 break;
             case 1:
-                context.fillStyle = "#00FF00";
+                imageObj.src =  'js/models/archer.png';
                 break;
             case 2:
-                context.fillStyle = "#0000FF";
+                imageObj.src = 'js/models/wizard.png';
                 break;
             case 3:
-                context.fillStyle = "FFFF00";
+                imageObj.src = 'cleric.png';
                 break;
             default:
                 console.log("The role property passed to the Player.draw() function is greater than 3. Fix it.");
         }
-        context.fillRect(this.get("x")-5, this.get("y")-5, 30, 30);
+
+
+        if (!imageObj.complete)//if the image didn't load yet
+        {
+             console.log('The images isnt loaded') ;
+        }
+        context.drawImage(imageObj, this.get("x"), this.get("y"));
+        context.fillRect(this.get("x")-25, this.get("y")-25, 34, 34);
+        
+
+
     }
 
 });

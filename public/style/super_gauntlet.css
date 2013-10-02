@@ -32,6 +32,10 @@ canvas {
 
 
 }
+#footer {
+    position:absolute;
+    bottom:0;
+}
 
 .spacer {
     padding-top: 80px; /* define margin as you see fit */
