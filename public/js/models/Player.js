@@ -111,38 +111,34 @@ var Player = Backbone.Model.extend({
         // prompted upon client connection to select a number between 0 - 3.
         // This number is assigned to the Player object property 'pClass'
         // A different color is used to represent each class visually.
-        var imageObj = new Image();
+        
 
         switch(this.get("role"))
         {
 
             case 0:
-                imageObj.src = 'js/models/fighter.png';
+                var img = ASSET_MANAGER.getAsset('images/fighter.png');
+                context.drawImage(img, this.get("x") - img.width/2, this.get("y") - img.height/2, 64, 64);
+                console.log('fighter drawImage was processed.');
                 break;
             case 1:
-                imageObj.src =  'js/models/archer.png';
+                var img = ASSET_MANAGER.getAsset('images/archer.png');
+                context.drawImage(img, this.get("x") - img.width/2, this.get("y") - img.height/2, 64, 64);
+                console.log('archer drawImage was processed.');
                 break;
             case 2:
-                imageObj.src = 'js/models/wizard.png';
+                var img = ASSET_MANAGER.getAsset('images/wizard.png');
+                context.drawImage(img, this.get("x") - img.width/2, this.get("y") - img.height/2, 64, 64);
+                console.log('wizard drawImage was processed.');
                 break;
             case 3:
-                imageObj.src = 'cleric.png';
+                var img = ASSET_MANAGER.getAsset('images/cleric.png');
+                context.drawImage(img, this.get("x") - img.width/2, this.get("y") - img.height/2, 64, 64);
+                console.log('cleric drawImage was processed.');
                 break;
             default:
                 console.log("The role property passed to the Player.draw() function is greater than 3. Fix it.");
         }
-
-
-        if (!imageObj.complete)//if the image didn't load yet
-        {
-             console.log('The images isnt loaded') ;
-        }
-        context.drawImage(imageObj, this.get("x"), this.get("y"));
-        context.fillRect(this.get("x")-25, this.get("y")-25, 34, 34);
-        
-
-
     }
-
 });
 

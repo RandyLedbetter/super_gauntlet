@@ -19,12 +19,20 @@ var canvas,			// HTML5 Canvas element
 var PORT = 8000;    // HTTP port number for socket.io on localhost
 
 
+    
+
+
 // This function, init(), initializes the Super Gauntlet game
 // creates and HTML5 Canvas, and instantiates a local Player object.
 function init() {
-	// Declare the HTML5 canvas and rendering context
+
+    // Declare the canvas and rendering context
 	canvas = document.getElementById("gameCanvas");
 	context = canvas.getContext("2d");
+
+	// Maximise the canvas
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
 
 	// Initialize keyboard movement controls
 	keys = new Keys();
@@ -32,8 +40,8 @@ function init() {
 	// Calculate a random start position for the local player
 	// The minus 15 (half a player size) stops the player being
 	// placed right on the egde of the screen
-	var startX = Math.round(Math.random()*(canvas.width-15)),
-		startY = Math.round(Math.random()*(canvas.height-15));
+	var startX = Math.round(Math.random()*(canvas.width)),
+		startY = Math.round(Math.random()*(canvas.height));
 
     window.localPlayer.set({x: startX, y: startY});
 
@@ -48,6 +56,7 @@ function init() {
 	// Start listening for events
 	setEventHandlers();
 }
+
 
 
 // Set up Super Gauntlet core event handlers.
@@ -86,6 +95,12 @@ function onKeyup(e) {
 	}
 }
 
+// Browser window resize
+function onResize(e) {
+	// Maximise the canvas
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+};
 
 // Socket connected event handler
 function onSocketConnected(data) {
