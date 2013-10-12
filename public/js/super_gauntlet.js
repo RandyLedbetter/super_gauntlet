@@ -12,9 +12,11 @@ Description:  Client side Super Gauntlet core game implementation and event
 var canvas,			// HTML5 Canvas element
 	context,		// HTML5 Canvas rendering context
 	keys,			// Keyboard input
+	map,			// World object
 	localPlayer,	// Local player
 	remotePlayers,	// Remote players array
 	socket;			// Socket connection
+
 
 var PORT = 8000;    // HTTP port number for socket.io on localhost
 
@@ -33,6 +35,9 @@ function init() {
 	// Maximise the canvas
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
+
+	// Create the world
+    map = new World();
 
 	// Initialize keyboard movement controls
 	keys = new Keys();
@@ -194,8 +199,11 @@ function draw() {
 	// Wipe the canvas clean
 	context.clearRect(0, 0, canvas.width, canvas.height);
 
+	//draw map
+	map.draw(context, localPlayer.get('x'),localPlayer.get('y'));
 
 	// Draw the local player
+	
 	localPlayer.draw(context);
 
 
