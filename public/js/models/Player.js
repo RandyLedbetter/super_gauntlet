@@ -16,7 +16,9 @@ var Player = Backbone.Model.extend({
         level: 1,
         img: '',
         weapon: '',
-        items: []
+        items: [],
+        width: 32,
+        height: 32
     },
 
 
@@ -82,7 +84,11 @@ var Player = Backbone.Model.extend({
     update: function(keys) {
         // Previous position
         var prevX = this.get("x"),
-            prevY = this.get("y");
+            prevY = this.get("y"),
+            imgSize = 64,
+            worldWidth = 160*32,
+            worldHeight = 160*32;
+
 
 
         if (keys.up) {
@@ -97,6 +103,20 @@ var Player = Backbone.Model.extend({
         } else if (keys.right) {
             this.set({x: this.get("x") + this.get("speed")});
         }
+    
+    // don't let player leaves the world's boundary
+        if(this.get("x") - this.get("width")/2 < 0){        
+            this.set({x: 0 + this.get("width")/2});
+        }
+        if(this.get("y") - this.get("height")/2 < 0){
+            this.set({y: 0 + this.get("height")/2});
+        }
+        if(this.get("x") + this.get("width")/2 > worldWidth){
+            this.set({x: worldWidth - this.get("width")/2});
+        }
+        if(this.get("y") + this.get("height")/2 > worldHeight){
+            this.set({y: worldHeight - this.get("height")/2});
+        }
 
         return (prevX != this.get("x") || prevY != this.get("y")) ? true : false;
     },
@@ -104,41 +124,38 @@ var Player = Backbone.Model.extend({
     // Draw player
     draw: function(context) 
     {
-
-        // Cheesy way to test client/server retention of multiplayer
-        // object attributes. Remove once proof of concept is established.
         // Fighter = 0, Ranger = 1, Wizard = 2, and Cleric = 3. The user is
         // prompted upon client connection to select a number between 0 - 3.
         // This number is assigned to the Player object property 'pClass'
         // A different color is used to represent each class visually.
-        
 
         switch(this.get("role"))
         {
-
             case 0:
                 var img = ASSET_MANAGER.getAsset('images/fighter.png');
                 context.drawImage(img, this.get("x") - img.width/2, this.get("y") - img.height/2, 64, 64);
-                console.log('fighter drawImage was processed.');
+                //console.log('fighter drawImage was processed.');
                 break;
             case 1:
                 var img = ASSET_MANAGER.getAsset('images/archer.png');
                 context.drawImage(img, this.get("x") - img.width/2, this.get("y") - img.height/2, 64, 64);
-                console.log('archer drawImage was processed.');
+                //console.log('archer drawImage was processed.');
                 break;
             case 2:
                 var img = ASSET_MANAGER.getAsset('images/wizard.png');
                 context.drawImage(img, this.get("x") - img.width/2, this.get("y") - img.height/2, 64, 64);
-                console.log('wizard drawImage was processed.');
+                //console.log('wizard drawImage was processed.');
                 break;
             case 3:
                 var img = ASSET_MANAGER.getAsset('images/cleric.png');
                 context.drawImage(img, this.get("x") - img.width/2, this.get("y") - img.height/2, 64, 64);
-                console.log('cleric drawImage was processed.');
+                //console.log('cleric drawImage was processed.');
                 break;
             default:
                 console.log("The role property passed to the Player.draw() function is greater than 3. Fix it.");
         }
     }
+
+    
 });
 
