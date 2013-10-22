@@ -6,13 +6,18 @@ var World = Backbone.Model.extend
         id: 1,
         width: 32*160,
         height: 32*160,
-        x: 0,
-        y: 0,
         level: 1,
         image: new Image()
     },
     initialize: function(){
-               var x= 0;
+        canvas = document.getElementById("gameCanvas");
+        context = canvas.getContext("2d");
+        var wide = context.canvas.width;
+        var high = context.canvas.height;
+				context.canvas.width = 32*160;
+				context.canvas.height = 32*160;
+console.log(this.height);
+        var x= 0;
         var y=0;
         var img = ASSET_MANAGER.getAsset('images/cleric.png');
         while(x < 160 && y < 160)
@@ -23,37 +28,42 @@ var World = Backbone.Model.extend
             
         }
         this.image = new Image();
+
         this.image.src = context.canvas.toDataURL("image/png");
+				context.canvas.width = wide;
+				context.canvas.height = high;
     },
 
-    draw: function(context,  xView, yView) 
+    draw: function(context,  playerX, playerY) 
     {
    
    
-        var sx, sy, dx, dy;
-        var sWidth, sHeight, dWidth, dHeight;
+        // var px, py, dx, dy;
+        var width, height;
         
         // offset point to crop the image
-        sx = xView;
-        sy = yView;
+        // px = playerX;
+        // py = playerY;
         
         // dimensions of cropped image          
-        sWidth =  context.canvas.width;
-        sHeight = context.canvas.height;
+        width =  context.canvas.width;
+        height = context.canvas.height;
 
         // if cropped image is smaller than canvas we need to change the source dimensions
-        if(this.image.width - sx < sWidth){
-            sWidth = this.image.width - sx;
-        }
-        if(this.image.height - sy < sHeight){
-            sHeight = this.image.height - sy; 
-        }
+        // if(this.image.width - px < sWidth){
+        //     sWidth = this.image.width - px;
+        // }
+        // if(this.image.height - py < sHeight){
+        //     sHeight = this.image.height - py; 
+        // }
         
         // match destination with source to not scale the image
-        dWidth = sWidth;
-        dHeight = sHeight;                                  
-        
-        context.drawImage(this.image, sx, sy, sWidth, sHeight, 0, 0, dWidth, dHeight);            
+        // dWidth = sWidth;
+        // dHeight = sHeight;    
+
+        //ctx.drawImage(imageObj, x_crop, y_crop, w_crop, h_crop, x, y, wide, high);
+
+        context.drawImage(this.image, playerX, playerY, width, height, 0, 0, width, height);
    },
        /* for all objects
      colision: function (Player) {

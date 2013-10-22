@@ -13,6 +13,8 @@ var Player = Backbone.Model.extend({
         speed: 0,
         x: 0,
         y: 0,
+        dispX: 0,
+        dispY: 0,
         level: 1,
         img: '',
         weapon: '',
@@ -80,6 +82,7 @@ var Player = Backbone.Model.extend({
 
     },
 
+
     // Update player position
     update: function(keys) {
         // Previous position
@@ -119,6 +122,7 @@ var Player = Backbone.Model.extend({
         }
 
         return (prevX != this.get("x") || prevY != this.get("y")) ? true : false;
+
     },
 
     // Draw player
@@ -128,27 +132,53 @@ var Player = Backbone.Model.extend({
         // prompted upon client connection to select a number between 0 - 3.
         // This number is assigned to the Player object property 'pClass'
         // A different color is used to represent each class visually.
+        if (this.get("x")<canvas.width/2)
+        {
+            this.set({dispX: this.get("x")});
+        }
+        else if (this.get("x")>(160*32-canvas.width/2))
+        {
+            this.set({dispX: this.get("x")-(160*32-canvas.width)});
+        }
+        else
+        {
+            this.set({dispX: canvas.width/2});
+        }
+        //console.log(canvas.width/2);
+
+        if (this.get("y")<canvas.height/2)
+        {
+            this.set({dispY: this.get("y")});
+        }
+        else if (this.get("y")>(160*32-canvas.height/2))
+        {
+            this.set({dispY: this.get("y")-(160*32-canvas.height)});
+        }
+        else
+        {
+            this.set({dispY: canvas.height/2});
+        }
 
         switch(this.get("role"))
         {
             case 0:
                 var img = ASSET_MANAGER.getAsset('images/fighter.png');
-                context.drawImage(img, this.get("x") - img.width/2, this.get("y") - img.height/2, 64, 64);
+                context.drawImage(img, this.get("dispX") - img.width/2, this.get("dispY") - img.height/2, 64, 64);
                 //console.log('fighter drawImage was processed.');
                 break;
             case 1:
                 var img = ASSET_MANAGER.getAsset('images/archer.png');
-                context.drawImage(img, this.get("x") - img.width/2, this.get("y") - img.height/2, 64, 64);
+                context.drawImage(img, this.get("dispX") - img.width/2, this.get("dispY") - img.height/2, 64, 64);
                 //console.log('archer drawImage was processed.');
                 break;
             case 2:
                 var img = ASSET_MANAGER.getAsset('images/wizard.png');
-                context.drawImage(img, this.get("x") - img.width/2, this.get("y") - img.height/2, 64, 64);
+                context.drawImage(img, this.get("dispX") - img.width/2, this.get("dispY") - img.height/2, 64, 64);
                 //console.log('wizard drawImage was processed.');
                 break;
             case 3:
                 var img = ASSET_MANAGER.getAsset('images/cleric.png');
-                context.drawImage(img, this.get("x") - img.width/2, this.get("y") - img.height/2, 64, 64);
+                context.drawImage(img, this.get("dispX") - img.width/2, this.get("dispY") - img.height/2, 64, 64);
                 //console.log('cleric drawImage was processed.');
                 break;
             default:
