@@ -28,27 +28,22 @@ var PORT = 8000;    // HTTP port number for socket.io on localhost
 // creates and HTML5 Canvas, and instantiates a local Player object.
 function init() {
 
-    // Declare the canvas and rendering context
-	canvas = document.getElementById("gameCanvas");
-	context = canvas.getContext("2d");
-
-	// Maximise the canvas
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
-
 	// Create the world
     map = new World();
 
 	// Initialize keyboard movement controls
 	keys = new Keys();
 
+
+
 	// Calculate a random start position for the local player
 	// The minus 15 (half a player size) stops the player being
 	// placed right on the egde of the screen
-	var startX = Math.round(Math.random()*(canvas.width)),
-		startY = Math.round(Math.random()*(canvas.height));
+	var startX = canvas.width / 2,
+		startY = canvas.height / 2;
 
     window.localPlayer.set({x: startX, y: startY});
+    window.localPlayer.makePlayerSprite(context);
 
 
     // Initialize the socket connection. Server is running locally on port 8080.
@@ -203,7 +198,6 @@ function draw() {
 	map.draw(context, localPlayer.get('x'),localPlayer.get('y'));
 
 	// Draw the local player
-	
 	localPlayer.draw(context);
 
 
