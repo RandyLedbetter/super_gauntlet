@@ -26,9 +26,14 @@ Every time a new client (new browser window) connects to the server, this proces
 6. Open public/index.html in a browser. Select a number from 0 to 3 (representing a character class). Move the character with the arrow keys.
 7. Open a seperate browser window and repeat the process with a different number to instantiate a different character class. Move the character around in the second window. Switch back and forth, and you will see the players' movements are in sync.
 
+##Attribution
 
-##The Character Class Colors Are:
-* Fighter = 0 = Red
-* Ranger = 1 = Green
-* Wizard = 2 = Blue
-* Cleric = 3 = Yellow
+The four character sprite images currently being used were generated with the http://www.mmorpgmakerxb.com/ sprite generating tool.
+
+All images starting with 'Dungeon-Tile' were created by:
+
+CGTextures.com
+
+One or more textures in Dungeon Tile set from which this project has benefited from have been created with images from CGTextures.com. These images may not be redistributed by default, please visit www.cgtextures.com for more information.
+
+Additional attribution goes "ProBono", "Dundjinni.com", "RpgMapShare.com", and "Paint.Net".
