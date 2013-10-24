@@ -24,14 +24,9 @@ canvas {
     width: 100%;
     height: auto;
     background-color: #444;
-    background-image: linear-gradient(45deg, black 25%, transparent 25%, transparent 75%, black 75%, black), 
-    linear-gradient(45deg, black 25%, transparent 25%, transparent 75%, black 75%, black);
-    background-size:70px 70px;
-    background-position:0 0, 35px 35px
+  
 }
 .gamelayer {
-width: 1024px;
-height: 640px;
 position:absolute;
 display:none;
 }
@@ -74,7 +69,7 @@ display:none;
 
 .canvas-container {
     position: relative;
-    max-width: 1024px;
+    max-width: 648px;
     min-width: 320px;
     margin: 0 auto;
 }
