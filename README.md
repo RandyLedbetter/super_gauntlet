@@ -34,6 +34,6 @@ All images starting with 'Dungeon-Tile' were created by:
 
 CGTextures.com
 
-One or more textures in Dungeon Tile set from which this project has benefited from have been created with images from CGTextures.com. These images may not be redistributed by default, please visit www.cgtextures.com for more information.
+One or more textures in the Dungeon Tile set from which this project has benefited from were created with images from CGTextures.com. These images may not be redistributed by default, please visit www.cgtextures.com for more information.
 
 Additional attribution goes "ProBono", "Dundjinni.com", "RpgMapShare.com", and "Paint.Net".
