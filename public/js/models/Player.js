@@ -42,26 +42,26 @@ var Player = Backbone.Model.extend({
 
         if (keys.up) {
             this.set({y: this.get("y") - this.get("speed")});
+            this.get('player').y = this.get("dispY") - 48 - this.get("speed");
             this.get('player').currentState = 'up';
-            this.get('player').y = (((this.get('y') + 48)/2)-48) - this.get('speed');
             updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
         } if (keys.down) {
             this.set({y: this.get("y") + this.get("speed")});
+            this.get('player').y = this.get("dispY") - 48 + this.get("speed");
             this.get('player').currentState = 'down';
-            this.get('player').y = (((this.get('y') - 48)/2)-48) + this.get('speed');
             updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
         }
 
 
         if (keys.left) {
             this.set({x: this.get("x") - this.get("speed")});
+            this.get('player').x = this.get("dispX") - 32 - this.get("speed");
             this.get('player').currentState = 'left';
-            this.get('player').x = (((this.get('x') + 32)/2)-32) - this.get('speed');
             updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
         } if (keys.right) {
             this.set({x: this.get("x") + this.get("speed")});
+            this.get('player').x = this.get("dispX") - 32 + this.get("speed");
             this.get('player').currentState = 'right';
-            this.get('player').x = (((this.get('x') - 32)/2)-32) + this.get('speed');
             updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
         }
     
@@ -109,9 +109,11 @@ var Player = Backbone.Model.extend({
         var spriteDownAnim = new Animation(spriteTiles, ['3,0', '2,0', '1,0', '0,0'], 200);
         var spriteUpAnim = new Animation(spriteTiles, ['0,3', '1,3', '2,3', '3,3'], 200);
 
-        var player = new Sprite({'left': spriteLeftAnim, 'right': spriteRightAnim, 'down': spriteDownAnim, 'up': spriteUpAnim}, 'down', this.get('x'), this.get('y'), 64, 96, 200);
-        this.set('player', player);
-        console.log(player);
+        var player = new Sprite({'left': spriteLeftAnim, 'right': spriteRightAnim, 'down': spriteDownAnim, 'up': spriteUpAnim}, 'down', canvas.width / 2, canvas.height/ 2, 64, 96, 200);
+        
+        this.set('currentState', player.currentState);
+        this.set('pX', player.x);
+        this.set('pY', player.y);
     },
 
     // Draw player
@@ -128,7 +130,7 @@ var Player = Backbone.Model.extend({
         }
         else
         {
-            this.set({dispX: canvas.width/2});
+            this.set({dispX: canvas.width/2});   
         }
       
 
@@ -143,6 +145,7 @@ var Player = Backbone.Model.extend({
         else
         {
             this.set({dispY: canvas.height/2});
+         
         }
 
 

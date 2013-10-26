@@ -28,6 +28,8 @@ var PORT = 8000;    // HTTP port number for socket.io on localhost
 // creates and HTML5 Canvas, and instantiates a local Player object.
 function init() {
 
+
+
 	// Create the world
     map = new World();
 
@@ -105,10 +107,12 @@ function onResize(e) {
 // Socket connected event handler
 function onSocketConnected(data) {
 	console.log("Connected to socket server");
-
+    
 	// Send local player data to the game server
-	//socket.emit("new player", {x: localPlayer.get("x"), y: localPlayer.get("y"), role: localPlayer.get("role"), username: localPlayer.get("username")});
-    socket.emit("new player", localPlayer);
+	socket.emit("new player", {x: localPlayer.get("x"), y: localPlayer.get("y"), role: localPlayer.get("role"), username: localPlayer.get("username")});
+    //socket.emit("new player", localPlayer);
+    
+
 
 }
 
@@ -126,7 +130,7 @@ function onNewPlayer(data) {
         var newPlayer = new Player();
 
         newPlayer.set({x: data.x, y: data.y, role: data.role, id: data.id, username: data.username});
-
+        newPlayer.makePlayerSprite(context);
         console.log(newPlayer.toJSON());
 
         // Add new player to the remote players array
@@ -184,6 +188,11 @@ function update() {
 	if (localPlayer.update(keys)) {
 		// Send local player data to the game server for processing
 		socket.emit("move player", {x: localPlayer.get("x"), y: localPlayer.get("y")});
+	}
+	// update the remote players
+	var i;
+	for (i = 0; i < remotePlayers.length; i++) {
+		remotePlayers[i].update(keys);
 	}
 }
 

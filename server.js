@@ -195,7 +195,7 @@ function onClientDisconnect() {
 // onNewPlayer instantiates a server side copy of the 'data' object.
 function onNewPlayer(data) {
     // Create a new player based on 'data'
-    var newPlayer = new Player(data.x, data.y, data.role, data.username);
+    var newPlayer = new Player(data.x, data.y, data.role, data.username, data.player);
     newPlayer.id = this.id;
 
 
