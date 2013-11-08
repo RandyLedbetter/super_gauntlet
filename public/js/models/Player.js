@@ -10,6 +10,8 @@ var Player = Backbone.Model.extend({
         str: 10,
         con: 10,
         dex: 10,
+        wis: 10, 
+        itl: 10,
         speed: 0,
         x: 0,
         y: 0,
