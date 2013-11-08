@@ -111,6 +111,7 @@ var Player = Backbone.Model.extend({
 
         var player = new Sprite({'left': spriteLeftAnim, 'right': spriteRightAnim, 'down': spriteDownAnim, 'up': spriteUpAnim}, 'down', canvas.width / 2, canvas.height/ 2, 64, 96, 200);
         
+        this.set('player', player);
         this.set('currentState', player.currentState);
         this.set('pX', player.x);
         this.set('pY', player.y);
