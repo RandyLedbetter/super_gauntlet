@@ -233,7 +233,7 @@
 
         $(".number-required").blur(function(){
             var regExp = /^(\d|,)+$/;
-            var total = parseInt($("#str").val()) + parseInt($("#dex").val()) + parseInt($("#con").val() + parseInt($("#wis").val() + parseInt($("#itl").val()));
+            var total = parseInt($("#str").val()) + parseInt($("#dex").val()) + parseInt($("#con").val()) + parseInt($("#wis").val()) + parseInt($("#itl").val());
 
             if(!(regExp.test(parseInt($(this).val())))){
                 $(this).closest('.form-group').removeClass('has-success').addClass('has-error');
