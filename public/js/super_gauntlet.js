@@ -28,7 +28,14 @@ var PORT = 8000;    // HTTP port number for socket.io on localhost
 // creates and HTML5 Canvas, and instantiates a local Player object.
 function init() {
 
-
+	//Create collision entities
+	Crafty.c('CollisionEntity',
+	{
+		init: function() 
+		{
+			this.requires('2D, Canvas, Grid');
+		},
+	});
 
 	// Create the world
     map = new World();
