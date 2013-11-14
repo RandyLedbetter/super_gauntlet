@@ -1,5 +1,5 @@
-var WORLD_WIDTH = 32 * 120;
-var WORLD_HEIGHT = 32 * 120;
+var WORLD_WIDTH = 32 * 200;
+var WORLD_HEIGHT = 32 * 200;
 
 var dungeon;
 
