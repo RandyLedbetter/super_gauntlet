@@ -51,10 +51,6 @@ AssetManager.prototype.isDone = function() {
 //var ctx = canvas.getContext('2d');
 var ASSET_MANAGER = new AssetManager();
 
-ASSET_MANAGER.queueDownload('images/fighter.png');
-ASSET_MANAGER.queueDownload('images/archer.png');
-ASSET_MANAGER.queueDownload('images/wizard.png');
-ASSET_MANAGER.queueDownload('images/cleric.png');
 
 ASSET_MANAGER.downloadAll(function() {
         //alert('All images are loaded');    
