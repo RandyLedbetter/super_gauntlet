@@ -121,16 +121,16 @@
             </div>
             <strong>Wisdom</strong>
             <div class="form-group">
-                <label for="wis" class="col-lg-offset-1 col-lg-3 sg-help-block">Base 14 +</label>
+                <label for="con" class="col-lg-offset-1 col-lg-3 sg-help-block">Base 14 +</label>
                 <div class="col-lg-2">
-                    <input type="text" class="form-control number-required" id="wis" type="text">
+                    <input type="text" class="form-control number-required" id="con" type="text">
                 </div>
             </div>
             <strong>Int</strong>
             <div class="form-group">
-                <label for="itl" class="col-lg-offset-1 col-lg-3 sg-help-block">Base 14 +</label>
+                <label for="con" class="col-lg-offset-1 col-lg-3 sg-help-block">Base 14 +</label>
                 <div class="col-lg-2">
-                    <input type="text" class="form-control number-required" id="itl" type="text">
+                    <input type="text" class="form-control number-required" id="con" type="text">
                 </div>
             </div>
             <div class="abilities-error"><strong class="text-danger"></strong></div>
@@ -186,9 +186,7 @@
         var name = $("#userName").val(),
                 str = parseInt($("#str").val()),
                 con = parseInt($("#con").val()),
-                dex = parseInt($("#dex").val()),
-                wis = parseInt($("#wis").val()),
-                itl = parseInt($("#itl").val());
+                dex = parseInt($("#dex").val());
 
         window.localPlayer = new Player();
         localPlayer.set({username: name});
@@ -196,8 +194,6 @@
         localPlayer.set({str: 14 + str});
         localPlayer.set({con: 10 + con});
         localPlayer.set({dex: 14 + dex});
-        localPlayer.set({wis: 14 + wis});
-        localPlayer.set({itl: 14 + itl});
         localPlayer.set({speed: localPlayer.get("speed") + ((10 + dex)/2)});
         localPlayer.set({ac: localPlayer.get("ac") + ((10 + dex)/2)});
         localPlayer.set({hp: localPlayer.get("hp") + (localPlayer.get("level") * (((14 + con)/2) + 8))});
@@ -233,7 +229,7 @@
 
         $(".number-required").blur(function(){
             var regExp = /^(\d|,)+$/;
-            var total = parseInt($("#str").val()) + parseInt($("#dex").val()) + parseInt($("#con").val()) + parseInt($("#wis").val()) + parseInt($("#itl").val());
+            var total = parseInt($("#str").val()) + parseInt($("#dex").val()) + parseInt($("#con").val());
 
             if(!(regExp.test(parseInt($(this).val())))){
                 $(this).closest('.form-group').removeClass('has-success').addClass('has-error');
@@ -247,7 +243,7 @@
         $("#submit").click(function(){
             console.log('clicked next button.');
 
-            var total = parseInt($("#str").val()) + parseInt($("#dex").val()) + parseInt($("#con").val()) + parseInt($("#wis").val()) + parseInt($("#itl").val());
+            var total = parseInt($("#str").val()) + parseInt($("#dex").val()) + parseInt($("#con").val());
             console.log("total = " + total);
 
             if(total != 6){

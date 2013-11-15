@@ -14,20 +14,19 @@ var Ai = function(startId, startRole, startAc, startHp, startStr, startCon, star
 		vDir = 1; // None: 0 Down: 1 Up: 2 
 
 	var update = function(enemyX, enemyY) {
-		//console.log(this.hDir);
-		//console.log("vDir: ", this.vDir);
+		
 		if(enemyX < this.x) {
-		//	console.log("My X: ", enemyX);
+		
 			this.hDir = 2;
 		}
 		else if(enemyX > this.x) {
-		//	console.log("My X: ", enemyX);
+		
 			this.hDir = 1;
 		}
 		else this.hDir = 0;
 
 		if(enemyY < this.y) {
-		//	console.log("My Y: ", enemyY);
+		
 			this.vDir = 2;
 		}
 		else if(enemyY > this.y) {
@@ -36,32 +35,32 @@ var Ai = function(startId, startRole, startAc, startHp, startStr, startCon, star
 		else this.vDir = 0;
 
 		if (this.vDir == 2) {
-        //    console.log("Ai Y: ", this.y);
+        
             this.y = this.y - this.speed;
             this.AI.currentState = 'up';
-            //this.get('player').y = (((this.get('y') + 48)/2)-48) - this.get('speed');
+           
             updateAnimation(this.AI.stateAnimations[this.AI.currentState]);
         } 
         else if (this.vDir == 1) {
-         //   console.log("Ai Y: ", this.y);
+        
             this.y = this.y + this.speed;
             this.AI.currentState = 'down';
-            //this.get('player').y = (((this.get('y') - 48)/2)-48) + this.get('speed');
+            
             updateAnimation(this.AI.stateAnimations[this.AI.currentState]);
         }
 
         if (this.hDir == 2) {
-        //    console.log("Ai X: ", this.x);
+       
             this.x = this.x - this.speed;
             this.AI.currentState = 'left';
-            //this.get('player').x = (((this.get('x') + 32)/2)-32) - this.get('speed');
+           
             updateAnimation(this.AI.stateAnimations[this.AI.currentState]);
         } 
         else if (this.hDir == 1) {
-        //    console.log("Ai X: ", this.x);
+       
             this.x = this.x + this.speed;
             this.AI.currentState = 'right';
-            //this.get('player').x = (((this.get('x') - 32)/2)-32) + this.get('speed');
+           
             updateAnimation(this.AI.stateAnimations[this.AI.currentState]);
         }
 	};

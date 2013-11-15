@@ -55,15 +55,15 @@ function Sprite(stateAnimations, startingState, x, y, width, height, speed) {
 //var player = new Sprite({'left': spriteLeftAnim, 'right': spriteRightAnim, 'down': spriteDownAnim, 'up': spriteUpAnim}, 'down', canvas.width / 2, canvas.height / 2, 64, 96, 300);
 
  
- function drawSprite(sprite) {
+ function drawSprite(sprite, xView, yView) {
     context.drawImage(
         sprite.stateAnimations[sprite.currentState].tileset.image, 
         sprite.stateAnimations[sprite.currentState].frames[sprite.stateAnimations[sprite.currentState].currentFrame].split(',')[0] * sprite.stateAnimations[sprite.currentState].tileset.tileWidth,
         sprite.stateAnimations[sprite.currentState].frames[sprite.stateAnimations[sprite.currentState].currentFrame].split(',')[1] * sprite.stateAnimations[sprite.currentState].tileset.tileHeight,
         sprite.stateAnimations[sprite.currentState].tileset.tileWidth,
         sprite.stateAnimations[sprite.currentState].tileset.tileHeight,
-        Math.round(sprite.x),
-        Math.round(sprite.y),
+        Math.round(sprite.x) - xView,
+        Math.round(sprite.y) - yView,
         sprite.width,
         sprite.height
     );
