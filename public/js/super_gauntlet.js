@@ -48,7 +48,7 @@ function init() {
     window.localPlayer.makePlayerSprite(context);
 
     camera = new Camera(0, 0, canvas.width, canvas.height, map.get("width"), map.get("height"));
-	camera.follow(localPlayer, canvas.width/2, canvas.height/2);
+	//camera.follow(localPlayer, canvas.width/2, canvas.height/2);
 
 	AI1 = new Ai(0, 3, 10, 100, 10, 10, 10, 2, 500, 500);
 	AI1.makeAISprite();

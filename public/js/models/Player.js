@@ -85,7 +85,7 @@ var Player = Backbone.Model.extend({
         switch(this.get("role"))
         {
             case 0:
-                var spriteTiles = new Tileset('images/fighter-sprite-64.png', 64, 96);
+                var spriteTiles = new Tileset('images/test-player-sprite-32.png', 32, 48);
 
                 break;
             case 1:

@@ -69,7 +69,7 @@ display:none;
 
 .canvas-container {
     position: relative;
-    max-width: 648px;
-    min-width: 320px;
+    width: 640px;
+    height: 640px;
     margin: 0 auto;
 }
