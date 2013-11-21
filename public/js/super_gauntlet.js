@@ -17,6 +17,7 @@ var axis,
 	map,			// World object
 	localPlayer,	// Local player
 	remotePlayers,	// Remote players array
+	AiArray,
 	socket;			// Socket connection
 
 
@@ -48,13 +49,12 @@ function init() {
     window.localPlayer.makePlayerSprite(context);
 
     camera = new Camera(0, 0, canvas.width, canvas.height, map.get("width"), map.get("height"));
-	//camera.follow(localPlayer, canvas.width/2, canvas.height/2);
+	camera.follow(localPlayer, canvas.width/2, canvas.height/2);
 
-	AI1 = new Ai(0, 3, 10, 100, 10, 10, 10, 2, 500, 500);
-	AI1.makeAISprite();
+	AiArray = new Array();
 
-	AI2 = new Ai(0, 2, 10, 100, 10, 10, 10, 4, 400, 600);
-	AI2.makeAISprite();
+	setSpawnPoint(canvas.width/2, canvas.width/2, 5000, 25000, 0, 0, 50, 3);
+	setSpawnPoint(10, 10, 5000, 25000, 0, 3, 50, 2);
 
     // Initialize the socket connection. Server is running locally on port 8080.
     socket = io.connect("http://localhost", {port: PORT, transports: ["websocket"]});
@@ -204,8 +204,32 @@ function update() {
 		camera.update(axis);
 		socket.emit("move player", {x: localPlayer.get("x"), y: localPlayer.get("y")});
 	}
-	AI1.update(localPlayer.get("x"), localPlayer.get("y"));
-	AI2.update(localPlayer.get("x"), localPlayer.get("y"));
+
+	//Update the AIs
+	var i;
+	for (i = 0; i < AiArray.length; i++) {
+		if(AiArray[i].update(localPlayer.get("x"), localPlayer.get("y"), localPlayer.get("player").currentState, localPlayer.get("attackDist")) == true && localPlayer.get("mercy") == false) {
+			if(localPlayer.get("hp") > 0) {
+				localPlayer.set({hp: localPlayer.get("hp") - 10}); 
+				localPlayer.set({mercy: true}); // localPlayer will not take damage until below timer goes off after 1 second
+				setTimeout(function(){ localPlayer.set({ mercy: false }) }, 1000); 
+				console.log(localPlayer.get("hp"));
+			}
+			else if(localPlayer.get("hp") <= 0) {
+				setTimeout(function() {  
+					localPlayer.revive();
+            		camera.reset(); 
+            		//console.log("REVIVE");
+            	}, 2500); 
+        	}
+		}
+	}
+
+	//console.log("x: ", localPlayer.get("x"));
+	//console.log("y: ", localPlayer.get("y"));
+
+	//AI1.update(localPlayer.get("x"), localPlayer.get("y"));
+	//AI2.update(localPlayer.get("x"), localPlayer.get("y"));
 }
 
 
@@ -223,8 +247,13 @@ function draw() {
 //	if(camera.viewPort.left < AI.x && camera.viewPort.top < AI.y
 //			&& (camera.viewPort.left + camera.wView) > AI.x
 //			&& (camera.viewPort.top + camera.hView) > AI.y)
-			AI1.draw(camera.xView, camera.yView);
-			AI2.draw(camera.xView, camera.yView);
+	
+	var i;
+	for (i = 0; i < AiArray.length; i++) {
+		AiArray[i].draw(camera.xView, camera.yView);
+	}
+	//AI1.draw(camera.xView, camera.yView);
+	//AI2.draw(camera.xView, camera.yView);
 
 	// Draw the remote players
 	var i;
@@ -236,6 +265,15 @@ function draw() {
     
 }
 
+function setSpawnPoint(x, y, interval, timeout, id, role, hp, speed) {
+	x = setInterval(function() { 
+		AiArray[AiArray.length] = new Ai(id, role, 10, hp, 10, 10, 10, speed, x, y);
+		//console.log(AiArray[AiArray.length]);
+		AiArray[AiArray.length-1].makeAISprite();
+	}, 2500);
+
+	setTimeout(function(){ clearTimeout(x); }, timeout); 
+}
 
 // Super Gauntlet Client Side Helper Functions
 

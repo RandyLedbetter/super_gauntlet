@@ -8,11 +8,12 @@ Description:  Rough draft of a Keys Class for Super Gauntlet game. Defines
               multiplayer server movement rendering via HTML5 Canvas.
 ===============================================================================
 */
-var Keys = function(up, left, right, down) {
+var Keys = function(up, left, right, down, space) {
 	var up = up || false,
 		left = left || false,
 		right = right || false,
-		down = down || false;
+		down = down || false,
+		space = space || false;
 		
 	var onKeyDown = function(e) {
 		var that = this,
@@ -31,6 +32,8 @@ var Keys = function(up, left, right, down) {
 			case 40: // Down
 				that.down = true;
 				break;
+			case 32: // Space
+				that.space = true;
 		}
 	};
 	
@@ -50,6 +53,8 @@ var Keys = function(up, left, right, down) {
 			case 40: // Down
 				that.down = false;
 				break;
+			case 32: // Space
+				that.space = false;
 		}
 	};
 
@@ -58,6 +63,7 @@ var Keys = function(up, left, right, down) {
 		left: left,
 		right: right,
 		down: down,
+		space: space,
 		onKeyDown: onKeyDown,
 		onKeyUp: onKeyUp
 	};
