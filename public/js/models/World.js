@@ -1,5 +1,5 @@
-var WORLD_WIDTH = 32 * 20;
-var WORLD_HEIGHT = 32 * 20;
+var WORLD_WIDTH = 32 * 120;
+var WORLD_HEIGHT = 32 * 120;
 
 var dungeon;
 
@@ -21,7 +21,7 @@ var makeLevelMap = function(rows, columns) {
 }
 
        
-dungeon = makeLevelMap(20, 20);
+dungeon = makeLevelMap(120, 120);
 
 // Test collision map of a single tile-sized level 640px
 // by 640px in dimension
@@ -53,12 +53,12 @@ var lvl_1_collision_map = [
 
 
 var mapTileSet = new Image();
-mapTileSet.src = 'images/collision-map-test-tile.png';
+mapTileSet.src = 'images/level1-3840x3840.png';
  
 var tileSize = 32;       // The size of a tile (32x32)
-var rowTileCount = 20;   // The number of tiles in a row of our background
-var colTileCount = 20;   // The number of tiles in a column of our background
-var imageNumTiles = 1;  // The number of tiles per row in the tileset image
+var rowTileCount = 120;   // The number of tiles in a row of our background
+var colTileCount = 120;   // The number of tiles in a column of our background
+var imageNumTiles = 6;  // The number of tiles per row in the tileset image
 
 var World = Backbone.Model.extend
 ({

@@ -9,6 +9,35 @@ Description:  CSS styles for Super Gauntlet Game
 */
 
 body {
+    
+}
+
+#wrap {}
+    
+
+.sg-bg-light {
+    background: #d5cea6; /* Old browsers */
+    background: rgb(209,211,96); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(209,211,96,1) 0%, rgba(229,230,150,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(209,211,96,1)), color-stop(100%,rgba(229,230,150,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(209,211,96,1) 0%,rgba(229,230,150,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(209,211,96,1) 0%,rgba(229,230,150,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(209,211,96,1) 0%,rgba(229,230,150,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(209,211,96,1) 0%,rgba(229,230,150,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d1d360', endColorstr='#e5e696',GradientType=0 ); /* IE6-9 */
+
+}
+
+.sg-bg-dark {
+    background: rgb(16,16,17); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(16,16,17,1) 0%, rgba(7,7,7,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(16,16,17,1)), color-stop(100%,rgba(7,7,7,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(16,16,17,1) 0%,rgba(7,7,7,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(16,16,17,1) 0%,rgba(7,7,7,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(16,16,17,1) 0%,rgba(7,7,7,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(16,16,17,1) 0%,rgba(7,7,7,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#101011', endColorstr='#070707',GradientType=0 ); /* IE6-9 */
+
 }
 
 img {
@@ -20,7 +49,7 @@ canvas {
 }
 
 #gameCanvas {
-    border: 4px solid #000000;
+    border: 4px solid #9a9494;
     width: 100%;
     height: auto;
     background-color: #444;
@@ -72,4 +101,70 @@ display:none;
     width: 640px;
     height: 640px;
     margin: 0 auto;
+}
+.navbar-inverse, #footer {
+    background-color: black;
+}
+
+.black {
+    background-color: #261f19;
+}
+
+.black-bg {
+    background-color: #f4eec5;
+    color: black;
+    background: -moz-linear-gradient(top,  rgba(76,58,26,0.65) 0%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(76,58,26,0.65)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(76,58,26,0.65) 0%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(76,58,26,0.65) 0%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(76,58,26,0.65) 0%,rgba(0,0,0,0) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(76,58,26,0.65) 0%,rgba(0,0,0,0) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a64c3a1a', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+
+}
+
+.sg-text {
+    height: 40px;
+    width: 300px;
+    margin-top: 10px;
+    padding: 0px;
+}
+
+.sg-font {
+    font-family: Impact, Charcoal, sans-serif;
+    font-size:16px;
+    color: #222222;
+    letter-spacing:  1px;
+}
+
+#submit {
+    background: #000000; /* Old browsers */
+    background: -moz-linear-gradient(top,  #000000 0%, #45484d 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#000000), color-stop(100%,#45484d)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #000000 0%,#45484d 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #000000 0%,#45484d 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #000000 0%,#45484d 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #000000 0%,#45484d 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#45484d',GradientType=0 ); /* IE6-9 */
+
+}
+
+#joinGame {
+    background: #1f3b08; /* Old browsers */
+    background: -moz-linear-gradient(top,  #1f3b08 0%, #627d4d 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1f3b08), color-stop(100%,#627d4d)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #1f3b08 0%,#627d4d 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #1f3b08 0%,#627d4d 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #1f3b08 0%,#627d4d 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #1f3b08 0%,#627d4d 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f3b08', endColorstr='#627d4d',GradientType=0 ); /* IE6-9 */
+
+    color: white;
+}
+
+input[type="text"], textarea {
+
+  background-color : black; 
+  color: white;
+
 }
