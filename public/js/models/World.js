@@ -54,6 +54,9 @@ var lvl_1_collision_map = [
 
 var mapTileSet = new Image();
 mapTileSet.src = 'images/level1-3840x3840.png';
+
+var collisionMap = new Image();
+collisionMap.src = 'images/level1-collisionMap-3840.png';
  
 var tileSize = 32;       // The size of a tile (32x32)
 var rowTileCount = 120;   // The number of tiles in a row of our background
@@ -131,6 +134,17 @@ var World = Backbone.Model.extend
        // console.log(this.image);
         context.drawImage(mapTileSet, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);            
     },
+    
+    collision: function(playerX, playerY){
+        var hit = new HitMap(collisionMap);
+
+        if(hit.isHit(playerX, playerY) == true){
+            return 0;
+        }
+        else {
+            return 1;
+        }
+    }
     /*
     draw: function(context,  playerX, playerY) 
     {
