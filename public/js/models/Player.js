@@ -89,7 +89,7 @@ var Player = Backbone.Model.extend({
     },
 
     // Update player position
-    update: function(keys, worldWidth, worldHeight) {
+    update: function(keys, pixelValue, worldWidth, worldHeight) {
         // Previous position
         var prevX = this.get("x"),
             prevY = this.get("y");
@@ -140,6 +140,22 @@ var Player = Backbone.Model.extend({
             }
             if(this.get("y") > WORLD_HEIGHT - 100){
                 this.set({y: WORLD_HEIGHT - 100});
+            }
+            
+            if(pixelValue == 0){
+
+                if((this.get('player').currentState) == 'right'){
+                    this.set({x:(prevX) - 32});
+                }
+                else if((this.get('player').currentState) == 'left'){
+                    this.set({x:(prevX) + 32});
+                }
+                else if((this.get('player').currentState) == 'up'){
+                    this.set({y:(prevY) + 32});
+                }
+                else if((this.get('player').currentState) == 'down'){
+                    this.set({y:(prevY) - 32});
+                }
             }
         }
 
