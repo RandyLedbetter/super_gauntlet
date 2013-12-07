@@ -190,8 +190,10 @@ function animate() {
 
 // This function updates the localPlayer state.
 function update() {
+	
+	var pixelValue = map.collision(localPlayer.get("x"), localPlayer.get("y"));
 	// Update local player and check for change
-	if (localPlayer.update(keys)) {
+	if (localPlayer.update(keys, pixelValue)) {
 		// Send local player data to the game server for processing
 		if(keys.up || keys.down)
 			axis = 1
