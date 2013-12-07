@@ -56,7 +56,7 @@ var mapTileSet = new Image();
 mapTileSet.src = 'images/level1-3840x3840.png';
 
 var collisionMap = new Image();
-collisionMap.src = 'images/level1-collisionMap-3840.png';
+collisionMap.src = 'images/level1-collisionMap-3840x3840.png';
  
 var tileSize = 32;       // The size of a tile (32x32)
 var rowTileCount = 120;   // The number of tiles in a row of our background
