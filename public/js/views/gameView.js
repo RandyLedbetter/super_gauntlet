@@ -2,6 +2,8 @@ window.GameView = Backbone.View.extend({
 
     initialize:function () {
         this.template = _.template(tpl.get('gameView'));
+        this.render().el;
+       
     },
 
     render:function (eventName) {

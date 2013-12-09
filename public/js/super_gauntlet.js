@@ -18,6 +18,11 @@ var axis,
 	localPlayer,	// Local player
 	remotePlayers,	// Remote players array
 	AiArray,
+	pixelValue,
+	//pixelValueUp,
+	//pixelValueDown,
+	//pixelValueLeft,
+	//pixelValueRight,
 	socket;			// Socket connection
 
 
@@ -53,8 +58,8 @@ function init() {
 
 	AiArray = new Array();
 
-	setSpawnPoint(canvas.width/2, canvas.width/2, 5000, 25000, 0, 0, 50, 3);
-	setSpawnPoint(10, 10, 5000, 25000, 0, 3, 50, 2);
+	setSpawnPoint(canvas.width/2, canvas.width/2, 5000, 25000, 0, 0, 50, 6);
+	setSpawnPoint(10, 10, 5000, 25000, 0, 3, 50, 5);
 
     // Initialize the socket connection. Server is running locally on port 8080.
     socket = io.connect("http://localhost", {port: PORT, transports: ["websocket"]});
@@ -189,11 +194,34 @@ function animate() {
 
 
 // This function updates the localPlayer state.
-function update() {
-	
-	var pixelValue = map.collision(localPlayer.get("x"), localPlayer.get("y"));
+function update(context) {
+
+	/*pixelValueUp = map.collision(localPlayer.get("x"), (localPlayer.get("y") - 1));
+	pixelValueDown = map.collision(localPlayer.get("x"), (localPlayer.get("y") + 1));
+	pixelValueLeft = map.collision((localPlayer.get("x") - 1), localPlayer.get("y"));
+	pixelValueRight = map.collision((localPlayer.get("x") + 1), localPlayer.get("y"));*/
+	pixelValue = map.collision(localPlayer.get("x"), localPlayer.get("y"));
+
+	if(localPlayer.get('player').currentState == 'up')
+	{
+		pixelValue = map.collision(localPlayer.get("x"), (localPlayer.get("y") - 1));
+	}
+	else if(localPlayer.get('player').currentState == 'down')
+	{
+		pixelValue = map.collision(localPlayer.get("x"), (localPlayer.get("y") + 48));
+	}
+	else if(localPlayer.get('player').currentState == 'left')
+	{
+		pixelValue = map.collision((localPlayer.get("x") - 1), localPlayer.get("y"));
+	}
+	else if(localPlayer.get('player').currentState == 'right')
+	{
+		pixelValue = map.collision((localPlayer.get("x") + 32), localPlayer.get("y"));
+	}
+
+
 	// Update local player and check for change
-	if (localPlayer.update(keys, pixelValue)) {
+	if (localPlayer.update(keys, pixelValue/*, pixelValueUp, pixelValueDown, pixelValueLeft, pixelValueRight*/)) {
 		// Send local player data to the game server for processing
 		if(keys.up || keys.down)
 			axis = 1

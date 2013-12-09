@@ -119,20 +119,7 @@
                     <input type="text" class="form-control number-required" id="con" type="text">
                 </div>
             </div>
-            <strong>Wisdom</strong>
-            <div class="form-group">
-                <label for="con" class="col-lg-offset-1 col-lg-3 sg-help-block">Base 14 +</label>
-                <div class="col-lg-2">
-                    <input type="text" class="form-control number-required" id="con" type="text">
-                </div>
-            </div>
-            <strong>Int</strong>
-            <div class="form-group">
-                <label for="con" class="col-lg-offset-1 col-lg-3 sg-help-block">Base 14 +</label>
-                <div class="col-lg-2">
-                    <input type="text" class="form-control number-required" id="con" type="text">
-                </div>
-            </div>
+            
             <div class="abilities-error"><strong class="text-danger"></strong></div>
             <hr />
             <div class="row">
@@ -142,12 +129,12 @@
                         <h5><strong>Weapon</strong></h5>
                         <div class="radio">
                             <label class="help-block">
-                                <input type="radio" name="optionsRadios" id="weapon1" value="option1" checked>Weapon One
+                                <input type="radio" name="optionsRadios" id="weapon1" value="Mace" checked>Mace
                             </label>
                         </div>
                         <div class="radio">
                             <label class="help-block">
-                                <input type="radio" name="optionsRadios" id="weapon2" value="option2">Weapon Two
+                                <input type="radio" name="optionsRadios" id="weapon2" value="Morningstar">Morningstar
                             </label>
                         </div>
                     </form>
@@ -157,12 +144,12 @@
                         <h5><strong>Magic Item</strong></h5>
                         <div class="radio">
                             <label class="help-block">
-                                <input type="radio" name="optionsRadios" id="magicItem1" value="option1" checked>Magic Item One
+                                <input type="radio" name="optionsRadios" id="magicItem1" value="option1" checked>Amulet of Healing
                             </label>
                         </div>
                         <div class="radio">
                             <label class="help-block">
-                                <input type="radio" name="optionsRadios" id="magicItem2" value="option2">Magic Item Two
+                                <input type="radio" name="optionsRadios" id="magicItem2" value="option2">Shield of Faith
                             </label>
                         </div>
                     </form>
@@ -191,17 +178,20 @@
         window.localPlayer = new Player();
         localPlayer.set({username: name});
         localPlayer.set({role: 3});
+        localPlayer.set({roleName: "Cleric"});
         localPlayer.set({str: 14 + str});
         localPlayer.set({con: 10 + con});
         localPlayer.set({dex: 14 + dex});
         localPlayer.set({speed: localPlayer.get("speed") + ((10 + dex)/2)});
         localPlayer.set({ac: localPlayer.get("ac") + ((10 + dex)/2)});
-        localPlayer.set({hp: localPlayer.get("hp") + (localPlayer.get("level") * (((14 + con)/2) + 8))});
+        localPlayer.set({maxhp: localPlayer.get("hp") + (localPlayer.get("level") * (((14 + con)/2) + 8))});
         console.log($('#weapon1').is(':checked'));
         if ($('#weapon1').is(':checked')){
-            localPlayer.set({weapon: "weapon1"});
+            var weapon = $("#weapon1").val();
+            localPlayer.set("weapon", weapon);
         } else {
-            localPlayer.set({weapon: "weapon2"});
+            var weapon = $("#weapon2").val();
+            localPlayer.set("weapon", weapon);
         }
         console.log($('#magicItem1').is(':checked'));
         if ($('#magicItem1').is(':checked')){

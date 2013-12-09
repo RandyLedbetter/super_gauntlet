@@ -113,12 +113,12 @@
                         <h5><strong>Level 1</strong></h5>
                         <div class="radio">
                             <label class="help-block">
-                                <input type="radio" name="optionsRadios" id="weapon1" value="option1" checked>Smash
+                                <input type="radio" name="optionsRadios" id="weapon1" value="Smash" checked>Smash
                             </label>
                         </div>
                         <div class="radio">
                             <label class="help-block">
-                                <input type="radio" name="optionsRadios" id="weapon2" value="option2">Cripple
+                                <input type="radio" name="optionsRadios" id="weapon2" value="Cripple">Cripple
                             </label>
                         </div>
                     </form>
@@ -162,17 +162,21 @@
         window.localPlayer = new Player();
         localPlayer.set({username: name});
         localPlayer.set({role: 0});
+        localPlayer.set({roleName: "Fighter"});
         localPlayer.set({str: 14 + str});
         localPlayer.set({con: 14 + con});
         localPlayer.set({dex: 10 + dex});
         localPlayer.set({speed: localPlayer.get("speed") + ((10 + dex)/2)});
         localPlayer.set({ac: localPlayer.get("ac") + ((10 + dex)/2)});
-        localPlayer.set({hp: localPlayer.get("hp") + (localPlayer.get("level") * (((14 + con)/2) + 12))});
+        localPlayer.set({maxhp: localPlayer.get("hp") + (localPlayer.get("level") * (((14 + con)/2) + 12))});
+        localPlayer.set("hp", localPlayer.get("maxhp"));
         console.log($('#weapon1').is(':checked'));
         if ($('#weapon1').is(':checked')){
-            localPlayer.set({weapon: "weapon1"});
+            var weapon = $("#weapon1").val();
+            localPlayer.set("weapon", weapon);
         } else {
-            localPlayer.set({weapon: "weapon2"});
+            var weapon = $("#weapon2").val();
+            localPlayer.set("weapon", weapon);
         }
         console.log($('#magicItem1').is(':checked'));
         if ($('#magicItem1').is(':checked')){

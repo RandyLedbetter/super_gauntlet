@@ -35,12 +35,15 @@ var AppRouter = Backbone.Router.extend({
 
 
     gameView: function () {
-        $('#content').html(new GameView({model: Player}).render().el);
+        //$('#content').html(new GameView({model: localPlayer}).render().el);
+        this.gameView = new GameView({model: localPlayer, el: $("#content")});
+         this.healthBView = new HealthBarView({model: localPlayer, el: "#health-bar-template"});
+
     }
 
 });
 
-tpl.loadTemplates(['splash', 'fighterOptions', 'rangerOptions', 'mageOptions', 'clericOptions', 'gameView'], function () {
+tpl.loadTemplates(['splash', 'fighterOptions', 'rangerOptions', 'mageOptions', 'clericOptions', 'gameView', 'health-bar-template'], function () {
     app = new AppRouter();
     Backbone.history.start();
 });

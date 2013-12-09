@@ -95,7 +95,7 @@ var World = Backbone.Model.extend
            }
         }
 
-        drawMap();
+       // drawMap();
         
 
         this.image = new Image();
@@ -132,10 +132,11 @@ var World = Backbone.Model.extend
         dWidth = sWidth;
         dHeight = sHeight;                                  
        // console.log(this.image);
+
         context.drawImage(mapTileSet, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);            
     },
     
-    collision: function(playerX, playerY){
+    collision: function(playerX, playerY, hitMap){
         var hit = new HitMap(collisionMap);
 
         if(hit.isHit(playerX, playerY) == true){

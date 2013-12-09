@@ -168,3 +168,91 @@ input[type="text"], textarea {
   color: white;
 
 }
+
+.health-bar-wrapper {
+    
+     margin: 0 auto;
+    margin-top: 35px;
+    width: 640px;
+    height: 60px;
+    position: relative;
+    background: blue;
+}
+#progress {
+   
+    width: 640px;
+    height: 60px;
+    background: transparent url(../images/health-bar-bg.png) scroll 0 0;
+    overflow: hidden;
+    position: relative;
+}
+
+#completion {
+    width: 326px;
+    max-width: 326px;
+    height: 36px;
+    overflow: hidden;
+    position: relative;
+    left: 288px; top: 11px;
+}
+
+.fighter-completion {
+    background: transparent url(../images/red-stone-bar.png) scroll 0 0;
+}
+
+.ranger-completion {
+    background: transparent url(../images/green-stone-bar.png) scroll 0 0;
+}
+
+.mage-completion {
+    background: transparent url(../images/violet-stone-bar.png) scroll 0 0;
+}
+
+.cleric-completion {
+    background: transparent url(../images/blue-stone-bar.png) scroll 0 0;
+}
+
+#player-name,
+#weapon-name {
+    font-family: 'Impact';
+    font-size: 14px;
+    letter-spacing: 1px;
+    display: block;
+    position: relative;
+    
+}
+
+#player-name {
+    bottom: 27px;
+    left: 120px;
+}
+
+#weapon-name {
+    bottom: 25px;
+    left: 85px;
+}
+
+.fighter-text {
+    text-shadow: 0px 2px 12px rgba(242, 129, 73, 1);
+    color: #f4ccc5;
+}
+
+.ranger-text {
+    text-shadow: 0px 2px 10px rgba(60, 200, 70, 1);
+    color: #d7f2da;
+}
+
+.mage-text {
+    text-shadow: 0px 2px 10px rgba(210, 24, 190, 1);
+    color: #f3c9ef;
+}
+
+.cleric-text {
+    text-shadow: 0px 2px 10px rgba(20, 130, 230, 1);
+    color: #bdd3e6;
+}
+
+.button-container {
+    margin-top: 20px;
+    margin-bottom: 40px;
+}

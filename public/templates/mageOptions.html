@@ -109,12 +109,12 @@
                         <h5><strong>Level 1 Spell</strong></h5>
                         <div class="radio">
                             <label class="help-block">
-                                <input type="radio" name="optionsRadios" id="weapon1" value="option1" checked>Whirlwind
+                                <input type="radio" name="optionsRadios" id="weapon1" value="Whirlwind" checked>Whirlwind
                             </label>
                         </div>
                         <div class="radio">
                             <label class="help-block">
-                                <input type="radio" name="optionsRadios" id="weapon2" value="option2">Magic Missile
+                                <input type="radio" name="optionsRadios" id="weapon2" value="Magic Missile">Magic Missile
                             </label>
                         </div>
                     </form>
@@ -174,17 +174,21 @@
         window.localPlayer = new Player();
         localPlayer.set({username: name});
         localPlayer.set({role: 2});
+        localPlayer.set({roleName: "Mage"});
         localPlayer.set({str: 10 + str});
         localPlayer.set({con: 14 + con});
         localPlayer.set({dex: 14 + dex});
         localPlayer.set({speed: localPlayer.get("speed") + ((14 + dex)/2)});
         localPlayer.set({ac: localPlayer.get("ac") + ((14 + dex)/2)});
-        localPlayer.set({hp: localPlayer.get("hp") + (localPlayer.get("level") * (((14 + con)/2) + 6))});
+        localPlayer.set({maxhp: localPlayer.get("hp") + (localPlayer.get("level") * (((14 + con)/2) + 6))});
+        localPlayer.set("hp", localPlayer.get("maxhp"));
         console.log($('#weapon1').is(':checked'));
         if ($('#weapon1').is(':checked')){
-            localPlayer.set({weapon: "weapon1"});
+            var weapon = $("#weapon1").val();
+            localPlayer.set("weapon", weapon);
         } else {
-            localPlayer.set({weapon: "weapon2"});
+            var weapon = $("#weapon2").val();
+            localPlayer.set("weapon", weapon);
         }
         console.log($('#magicItem1').is(':checked'));
         if ($('#magicItem1').is(':checked')){

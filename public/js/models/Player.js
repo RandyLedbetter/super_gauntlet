@@ -5,12 +5,15 @@ var Player = Backbone.Model.extend({
         id: 0,
         username: '',
         role: 0,
+        roleName: null,
         ac: 10,
         hp: 100,
+        prevhp: 100,
+        maxhp: 100,
         str: 10,
         con: 10,
         dex: 10,
-        speed: 0,
+        speed: 10,
         x: 0,
         y: 0,
         level: 1,
@@ -79,6 +82,55 @@ var Player = Backbone.Model.extend({
         // Add any functions you want to call when a Player object is
         // first instantiated...
 
+        this.on("change:ac", function(model){
+            var ac = model.get("ac");
+            console.log("The " + this.get("role") + "'s Armour Class is now " + parseInt(this.get("ac")) + ".");
+        });
+
+        this.on("change:str", function(model){
+            var str = model.get("str");
+            console.log("The " + this.get("role") + "'s Strength is now " + parseInt(this.get("str")) + ".");
+        });
+
+        this.on("change:con", function(model){
+            var con = model.get("con");
+            console.log("The " + this.get("role") + "'s Constitution is now " + parseInt(this.get("con")) + ".");
+        });
+
+        this.on("change:dex", function(model){
+            var dex = model.get("dex");
+            console.log("The " + this.get("role") + "'s Dexterity is now " + parseInt(this.get("dex")) + ".");
+        });
+
+        this.on("change:speed", function(model){
+            var speed = model.get("speed");
+            console.log("The " + this.get("role") + "'s Speed is now " + parseInt(this.get("speed")) + ".");
+        });
+
+        this.on("change:weapon", function(model){
+            var weapon = model.get("weapon");
+            console.log("The " + this.get("role") + "'s weapon is a " + this.get("weapon") + ".");
+        });
+
+        this.on("change:items", function(model){
+            var items = model.get("items");
+            console.log("The " + this.get("role") + "'s items array includes" + this.get("items") + ".");
+        });
+        this.on("change:x", function(model){
+            var x = model.get("x");
+            //console.log(this.get("role") + " x: = " + this.get("x") + ".");
+        });
+        this.on("change:y", function(model){
+            var y = model.get("y");
+           // console.log(this.get("role") + " y: = " + this.get("y") + ".");
+        });
+
+        //this.set({img: ASSET_MANAGER.getAsset('images/fighter.png')});
+
+
+        // Add any functions you want to call when a Player object is
+        // first instantiated...
+
     },
 
     attack: function(dmg) {
@@ -94,33 +146,58 @@ var Player = Backbone.Model.extend({
         var prevX = this.get("x"),
             prevY = this.get("y");
 
+
         if(this.get("hp") > 0) {
             if (keys.up) {
+                if(pixelValue == 0 && this.get('player').currentState == 'up')
+                {
+                    this.collisionUp();
+                }
+                else{
                 //console.log(this.get("y"));
                 this.set({y: this.get("y") - this.get("speed")});
                 this.get('player').currentState = 'up';
                 //this.get('player').y = (((this.get('y') + 48)/2)-48) - this.get('speed');
                 updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+            }
             } if (keys.down) {
+                if(pixelValue == 0 && this.get('player').currentState == 'down')
+                {
+                    this.collisionDown();
+                }
+                else{
                // console.log(this.get("y"));
                 this.set({y: this.get("y") + this.get("speed")});
                 this.get('player').currentState = 'down';
                 //this.get('player').y = (((this.get('y') - 48)/2)-48) + this.get('speed');
                 updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
             }
+            }
 
             if (keys.left) {
+                if(pixelValue == 0 && this.get('player').currentState == 'left')
+                {
+                    this.collisionLeft();
+                }
+                else{
              //   console.log(this.get("x"));
                 this.set({x: this.get("x") - this.get("speed")});
                 this.get('player').currentState = 'left';
                 //this.get('player').x = (((this.get('x') + 32)/2)-32) - this.get('speed');
                 updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+            }
             } if (keys.right) {
+                if(pixelValue == 0 && this.get('player').currentState == 'right')
+                {
+                    this.collisionRight();
+                }
+                else{
             //    console.log(this.get("x"));
                 this.set({x: this.get("x") + this.get("speed")});
                 this.get('player').currentState = 'right';
                 //this.get('player').x = (((this.get('x') - 32)/2)-32) + this.get('speed');
                 updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+            }
             }
 
             if(keys.space) {
@@ -141,23 +218,29 @@ var Player = Backbone.Model.extend({
             if(this.get("y") > WORLD_HEIGHT - 100){
                 this.set({y: WORLD_HEIGHT - 100});
             }
-            
-            if(pixelValue == 0){
 
-                if((this.get('player').currentState) == 'right'){
-                    this.set({x:(prevX) - 32});
-                }
-                else if((this.get('player').currentState) == 'left'){
-                    this.set({x:(prevX) + 32});
-                }
-                else if((this.get('player').currentState) == 'up'){
-                    this.set({y:(prevY) + 32});
-                }
-                else if((this.get('player').currentState) == 'down'){
-                    this.set({y:(prevY) - 32});
-                }
-            }
         }
+
+        /*if(pixelValueUp == 0)
+        {
+            this.collisionUp();
+        }
+
+        if(pixelValueDown == 0)
+        {
+            this.collisionDown();
+        }
+
+        if(pixelValueLeft == 0)
+        {
+            this.collisionLeft();
+        }
+
+        if(pixelValueRight == 0)
+        {
+            this.collisionRight();
+        }*/
+
 
         return (prevX != this.get("x") || prevY != this.get("y")) ? true : false;
      },
@@ -253,10 +336,342 @@ var Player = Backbone.Model.extend({
         context.restore();*/
     },
 
+    /*handleCollision: function(playerState)
+    {
+        switch(playerState){
+            case 'up':
+                if (keys.up) {
+                    this.set({y: this.get("y")});
+                    this.get('player').currentState = 'up';
+                    updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                } 
+
+                if (keys.down) {
+                    this.set({y: this.get("y") + this.get("speed")});
+                    this.get('player').currentState = 'down';
+                    updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                }
+
+                if (keys.left) {
+                    this.set({x: this.get("x") - this.get("speed")});
+                    this.get('player').currentState = 'left';
+                    updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                } 
+
+                if (keys.right) {
+                    this.set({x: this.get("x") + this.get("speed")});
+                    this.get('player').currentState = 'right';
+                    updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                }
+                break;
+
+            case 'down':
+
+                if (keys.up) {
+                this.set({y: this.get("y") - this.get("speed")});
+                this.get('player').currentState = 'up';
+                updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                } 
+
+                if (keys.down) {
+                this.set({y: this.get("y")});
+                this.get('player').currentState = 'down';
+                updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                }
+
+               if (keys.left) {
+                this.set({x: this.get("x") - this.get("speed")});
+                this.get('player').currentState = 'left';
+                updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                } 
+
+               if (keys.right) {
+                this.set({x: this.get("x") + this.get("speed")});
+                this.get('player').currentState = 'right';
+                updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                }
+                break;
+
+            case 'left':
+                if (keys.up) {
+                this.set({y: this.get("y") - this.get("speed")});
+                this.get('player').currentState = 'up';
+                updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                } 
+
+                if (keys.down) {
+                this.set({y: this.get("y") + this.get("speed")});
+                this.get('player').currentState = 'down';
+                updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                }
+
+                if (keys.left) {
+                this.set({x: this.get("x")});
+                this.get('player').currentState = 'left';
+                updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                } 
+
+                if (keys.right) {
+                this.set({x: this.get("x") + this.get("speed")});
+                this.get('player').currentState = 'right';
+                updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                }
+                break;
+
+            case 'right':
+                if (keys.up) {
+                this.set({y: this.get("y") - this.get("speed")});
+                this.get('player').currentState = 'up';
+                updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                } 
+
+                if (keys.down) {
+                this.set({y: this.get("y") + this.get("speed")});
+                this.get('player').currentState = 'down';
+                updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                }
+
+                if (keys.left) {
+                this.set({x: this.get("x") - this.get("speed")});
+                this.get('player').currentState = 'left';
+                updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                } 
+
+                if (keys.right) {
+                this.set({x: this.get("x")});
+                this.get('player').currentState = 'right';
+                updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                }
+                break;
+
+        }
+        /*if(playerState = 'up')
+            {
+                if (keys.up) {
+                this.set({y: this.get("y")});
+                this.get('player').currentState = 'up';
+                updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                } 
+
+                if (keys.down) {
+                this.set({y: this.get("y") + this.get("speed")});
+                this.get('player').currentState = 'down';
+                updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                }
+
+                if (keys.left) {
+                this.set({x: this.get("x") - this.get("speed")});
+                this.get('player').currentState = 'left';
+                updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                } 
+
+                if (keys.right) {
+                this.set({x: this.get("x") + this.get("speed")});
+                this.get('player').currentState = 'right';
+                updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                }
+                return;
+            }
+
+        if(playerState = 'down')
+            {
+                if (keys.up) {
+                this.set({y: this.get("y") - this.get("speed")});
+                this.get('player').currentState = 'up';
+                updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                } 
+
+                if (keys.down) {
+                this.set({y: this.get("y")});
+                this.get('player').currentState = 'down';
+                updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                }
+
+               if (keys.left) {
+                this.set({x: this.get("x") - this.get("speed")});
+                this.get('player').currentState = 'left';
+                updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                } 
+
+               if (keys.right) {
+                this.set({x: this.get("x") + this.get("speed")});
+                this.get('player').currentState = 'right';
+                updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                }
+                return;
+            }   
+
+         if(playerState = 'left')
+            {
+                if (keys.up) {
+                this.set({y: this.get("y") - this.get("speed")});
+                this.get('player').currentState = 'up';
+                updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                } 
+
+                if (keys.down) {
+                this.set({y: this.get("y") + this.get("speed")});
+                this.get('player').currentState = 'down';
+                updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                }
+
+                if (keys.left) {
+                this.set({x: this.get("x")});
+                this.get('player').currentState = 'left';
+                updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                } 
+
+                if (keys.right) {
+                this.set({x: this.get("x") + this.get("speed")});
+                this.get('player').currentState = 'right';
+                updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                }
+                return;
+            }
+
+         if(playerState = 'right')
+            {
+                if (keys.up) {
+                this.set({y: this.get("y") - this.get("speed")});
+                this.get('player').currentState = 'up';
+                updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                } 
+
+                if (keys.down) {
+                this.set({y: this.get("y") + this.get("speed")});
+                this.get('player').currentState = 'down';
+                updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                }
+
+                if (keys.left) {
+                this.set({x: this.get("x") - this.get("speed")});
+                this.get('player').currentState = 'left';
+                updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                } 
+
+                if (keys.right) {
+                this.set({x: this.get("x")});
+                this.get('player').currentState = 'right';
+                updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+                }
+                return;
+            }
+    },*/
+
+    collisionUp: function(){
+        if (keys.up) {
+            this.set({y: this.get("y")});
+            this.get('player').currentState = 'up';
+            updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+        } 
+
+        if (keys.down) {
+            this.set({y: this.get("y") + this.get("speed")});
+            this.get('player').currentState = 'down';
+            updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+        }
+
+        if (keys.left) {
+            this.set({x: this.get("x") - this.get("speed")});
+            this.get('player').currentState = 'left';
+            updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+        } 
+
+        if (keys.right) {
+            this.set({x: this.get("x") + this.get("speed")});
+            this.get('player').currentState = 'right';
+            updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+        }
+    return;
+    },
+
+    collisionDown: function(){
+        if (keys.up) {
+            this.set({y: this.get("y") - this.get("speed")});
+            this.get('player').currentState = 'up';
+            updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+        } 
+
+        if (keys.down) {
+            this.set({y: this.get("y")});
+            this.get('player').currentState = 'down';
+            updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+        }
+
+        if (keys.left) {
+            this.set({x: this.get("x") - this.get("speed")});
+            this.get('player').currentState = 'left';
+            updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+        } 
+
+       if (keys.right) {
+            this.set({x: this.get("x") + this.get("speed")});
+            this.get('player').currentState = 'right';
+            updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+        }
+            return;
+    },
+
+    collisionRight: function(){
+        if (keys.up) {
+            this.set({y: this.get("y") - this.get("speed")});
+            this.get('player').currentState = 'up';
+            updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+        } 
+
+        if (keys.down) {
+            this.set({y: this.get("y") + this.get("speed")});
+            this.get('player').currentState = 'down';
+            updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+        }
+
+        if (keys.left) {
+            this.set({x: this.get("x") - this.get("speed")});
+            this.get('player').currentState = 'left';
+            updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+        } 
+
+        if (keys.right) {
+            this.set({x: this.get("x")});
+            this.get('player').currentState = 'right';
+            updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+        }
+    return;
+
+    },
+
+    collisionLeft: function(){
+        if (keys.up) {
+            this.set({y: this.get("y") - this.get("speed")});
+            this.get('player').currentState = 'up';
+            updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+        } 
+
+        if (keys.down) {
+            this.set({y: this.get("y") + this.get("speed")});
+            this.get('player').currentState = 'down';
+            updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+        }
+
+        if (keys.left) {
+            this.set({x: this.get("x")});
+            this.get('player').currentState = 'left';
+            updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+        } 
+
+        if (keys.right) {
+            this.set({x: this.get("x") + this.get("speed")});
+            this.get('player').currentState = 'right';
+            updateAnimation(this.get('player').stateAnimations[this.get('player').currentState]);
+        }
+    return;
+
+    },
+
     revive: function() 
     {
-        this.set({x: 0});
-        this.set({y: 0});
+        this.set({x: 300});
+        this.set({y: 300});
         this.set({hp: 100});
     }
 });

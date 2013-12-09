@@ -45,19 +45,37 @@ var Ai = function(startId, startRole, startAc, startHp, startStr, startCon, star
 
     var makeAISprite = function() {
 
+       var number = Math.random();
+
         switch(this.role)
         {
             case 0:
-                var spriteTiles = new Tileset('images/fighter-sprite-64.png', 64, 96);
+                if(number < .50) {
+                    var spriteTiles = new Tileset('images/enemy-assassin-sprite-64.png', 64, 96);
+                } else {
+                    var spriteTiles = new Tileset('images/ememy-mage-sprite-64.png', 64, 96);
+                }
                 break;
             case 1:
-                var spriteTiles = new Tileset('images/ranger-sprite-64.png', 64, 96);
+                if(number < .50) {
+                    var spriteTiles = new Tileset('images/enemy-assassin-sprite-64.png', 64, 96);
+                } else {
+                    var spriteTiles = new Tileset('images/ememy-mage-sprite-64.png', 64, 96);
+                }
                 break;
             case 2:
-                var spriteTiles = new Tileset('images/mage-sprite-64.png', 64, 96);
+                if(number < .50) {
+                    var spriteTiles = new Tileset('images/enemy-assassin-sprite-64.png', 64, 96);
+                } else {
+                    var spriteTiles = new Tileset('images/ememy-mage-sprite-64.png', 64, 96);
+                }
                 break;
             case 3:
-                var spriteTiles = new Tileset('images/cleric-sprite-64.png', 64, 96);
+                if(number < .50) {
+                    var spriteTiles = new Tileset('images/enemy-assassin-sprite-64.png', 64, 96);
+                } else {
+                    var spriteTiles = new Tileset('images/ememy-mage-sprite-64.png', 64, 96);
+                }
                 break;
             default:
                 console.log("Failed to assign localPlayer sprite image in localPlayer.initialize()");
